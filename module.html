@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Modules | CyberWise - Cybersecurity for Older Adults</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    /* ... (keep all existing styles from the previous code - they are comprehensive and accessible) ... */
+    :root {
+        --primary: #0f172a;
+        --secondary: #1e293b;
+        --accent: #2563eb;
+        --accent-light: #3b82f6;
+        --accent-soft: #dbeafe;
+        --light: #f8fafc;
+        --gray: #64748b;
+        --success: #10b981;
+        --success-light: #d1fae5;
+        --warning: #f59e0b;
+        --warning-light: #fed7aa;
+        --error: #ef4444;
+        --error-light: #fee2e2;
+        --info: #3b82f6;
+        --info-light: #dbeafe;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        background-color: var(--light);
+        color: var(--primary);
+        line-height: 1.6;
+    }
+
+    /* Accessibility */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--accent);
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 0 0 4px 0;
+        z-index: 100;
+    }
+
+    .skip-link:focus {
+        top: 0;
+    }
+
+    /* Focus states */
+    :focus {
+        outline: 3px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    /* NAVIGATION */
+    nav {
+        background: white;
+        padding: 1.2rem 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    nav h1 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--accent);
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 500;
+        transition: 0.3s ease;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    nav a:hover {
+        color: var(--accent);
+    }
+
+    nav a.active {
+        color: var(--accent);
+        border-bottom: 2px solid var(--accent);
+    }
+
+    /* Accessibility controls */
+    .accessibility-bar {
+        background: var(--primary);
+        padding: 0.5rem 8%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+
+    .text-resize {
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        min-height: 38px;
+        transition: 0.3s ease;
+    }
+
+    .text-resize:hover {
+        background: white;
+        color: var(--primary);
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 3rem 8%;
+        text-align: center;
+    }
+
+    .page-header h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-header p {
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    /* PROGRESS OVERVIEW */
+    .progress-overview {
+        background: white;
+        padding: 2rem 8%;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .progress-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .progress-stat-card {
+        text-align: center;
+        padding: 1.5rem;
+        background: var(--light);
+        border-radius: 12px;
+    }
+
+    .progress-stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1.2;
+    }
+
+    .progress-stat-label {
+        color: var(--gray);
+        font-size: 1rem;
+    }
+
+    .overall-progress {
+        margin-top: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .progress-bar-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .progress-bar-label {
+        min-width: 60px;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .progress-bar-bg {
+        flex: 1;
+        height: 20px;
+        background: #e2e8f0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 10px;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+
+    /* MODULES SECTION */
+    .modules-section {
+        padding: 4rem 8%;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-header h3 {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .section-header p {
+        color: var(--gray);
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+    }
+
+    /* MODULE FILTERS */
+    .module-filters {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        padding: 0.8rem 1.5rem;
+        border: 2px solid #e2e8f0;
+        background: white;
+        color: var(--primary);
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: 0.3s ease;
+        min-height: 44px;
+    }
+
+    .filter-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    .filter-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+    }
+
+    /* MODULE GRID */
+    .modules-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* MODULE CARD */
+    .module-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+    }
+
+    .module-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 35px rgba(37,99,235,0.15);
+        border-color: var(--accent-light);
+    }
+
+    .module-card.completed {
+        border-left: 4px solid var(--success);
+    }
+
+    .module-card.in-progress {
+        border-left: 4px solid var(--warning);
+    }
+
+    .module-header {
+        padding: 1.5rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        position: relative;
+    }
+
+    .module-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        background: rgba(255,255,255,0.2);
+    }
+
+    .module-badge.completed {
+        background: var(--success);
+        color: white;
+    }
+
+    .module-badge.in-progress {
+        background: var(--warning);
+        color: white;
+    }
+
+    .module-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .module-header h4 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .module-meta {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+
+    .module-content {
+        padding: 1.5rem;
+    }
+
+    .module-description {
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .module-progress {
+        margin-bottom: 1.5rem;
+    }
+
+    .module-progress-bar {
+        height: 8px;
+        background: #e2e8f0;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+
+    .module-progress-fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+    }
+
+    .module-progress-text {
+        display: flex;
+        justify-content: space-between;
+        color: var(--gray);
+        font-size: 0.85rem;
+    }
+
+    .module-topics {
+        list-style: none;
+        margin-bottom: 1.5rem;
+    }
+
+    .module-topics li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+        font-size: 0.95rem;
+    }
+
+    .topic-check {
+        color: var(--success);
+        font-weight: bold;
+    }
+
+    .topic-uncheck {
+        color: var(--gray);
+        font-size: 0.8rem;
+    }
+
+    .module-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .btn-primary {
+        flex: 1;
+        padding: 0.9rem;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s ease;
+        min-height: 48px;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(37,99,235,0.2);
+    }
+
+    .btn-primary:disabled {
+        background: #cbd5e1;
+        cursor: not-allowed;
+    }
+
+    .btn-secondary {
+        padding: 0.9rem 1.2rem;
+        background: transparent;
+        color: var(--accent);
+        border: 2px solid var(--accent);
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s ease;
+        min-height: 48px;
+    }
+
+    .btn-secondary:hover {
+        background: var(--accent-soft);
+    }
+
+    /* DETAILED MODULE VIEW */
+    .detailed-module {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .module-progress-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 2rem;
+    }
+
+    .back-to-modules {
+        background: transparent;
+        color: white;
+        border: 1px solid rgba(255,255,255,0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        min-height: 38px;
+    }
+
+    .back-to-modules:hover {
+        background: rgba(255,255,255,0.1);
+    }
+
+    .module-progress-header h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .module-stats {
+        display: flex;
+        gap: 2rem;
+        margin: 1.5rem 0;
+    }
+
+    .module-stat {
+        text-align: center;
+    }
+
+    .module-stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: block;
+    }
+
+    .module-stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    /* LESSON SECTIONS */
+    .lesson-section {
+        padding: 2rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .lesson-section:last-child {
+        border-bottom: none;
+    }
+
+    .lesson-section h3 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    /* CONTENT CARDS */
+    .content-card {
+        background: var(--light);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+    }
+
+    .content-card h4 {
+        color: var(--accent);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .example-box {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 4px solid var(--accent);
+        margin: 1rem 0;
+    }
+
+    .example-box p {
+        margin-bottom: 1rem;
+    }
+
+    .example-box .label {
+        display: inline-block;
+        background: var(--accent-soft);
+        color: var(--accent);
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .warning-box {
+        background: var(--warning-light);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 4px solid var(--warning);
+        margin: 1rem 0;
+    }
+
+    .success-box {
+        background: var(--success-light);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 4px solid var(--success);
+        margin: 1rem 0;
+    }
+
+    /* TIPS LIST */
+    .tips-list {
+        list-style: none;
+    }
+
+    .tips-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        background: white;
+        border-radius: 8px;
+    }
+
+    .tip-number {
+        background: var(--accent);
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+
+    /* QUIZ SECTION */
+    .quiz-section {
+        background: var(--light);
+        padding: 2rem;
+        border-radius: 12px;
+    }
+
+    .quiz-question {
+        margin-bottom: 2rem;
+    }
+
+    .quiz-question h4 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .quiz-option {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: white;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .quiz-option:hover {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+    }
+
+    .quiz-option.selected {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+    }
+
+    .quiz-option.correct {
+        border-color: var(--success);
+        background: var(--success-light);
+    }
+
+    .quiz-option.incorrect {
+        border-color: var(--error);
+        background: var(--error-light);
+    }
+
+    .quiz-option input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .quiz-feedback {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        display: none;
+    }
+
+    .quiz-feedback.show {
+        display: block;
+    }
+
+    .feedback-correct {
+        background: var(--success-light);
+        color: var(--success);
+        border: 1px solid var(--success);
+    }
+
+    .feedback-incorrect {
+        background: var(--error-light);
+        color: var(--error);
+        border: 1px solid var(--error);
+    }
+
+    /* FINAL TEST SECTION */
+    .final-test-section {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        margin: 2rem 0;
+    }
+    .final-test-section h3 {
+        color: white;
+        margin-bottom: 1rem;
+    }
+    .test-question {
+        background: rgba(255,255,255,0.1);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+    .test-question p {
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    .test-option {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.8rem;
+        background: rgba(255,255,255,0.05);
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+    }
+    .test-option:hover {
+        background: rgba(255,255,255,0.15);
+    }
+    .test-option input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+    .test-score {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin: 1rem 0;
+    }
+    .pass-required {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        text-align: center;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+        list-style: none;
+    }
+
+    .checklist li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.8rem;
+        background: white;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+
+    .checklist input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .checklist label {
+        flex: 1;
+        cursor: pointer;
+    }
+
+    .checklist input[type="checkbox"]:checked + label {
+        text-decoration: line-through;
+        color: var(--gray);
+    }
+
+    /* RESOURCES SECTION */
+    .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .resource-card {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+        color: var(--primary);
+        border: 1px solid #e2e8f0;
+        transition: 0.3s ease;
+    }
+
+    .resource-card:hover {
+        border-color: var(--accent);
+        transform: translateX(5px);
+    }
+
+    .resource-icon {
+        font-size: 1.5rem;
+    }
+
+    .resource-info h5 {
+        color: var(--primary);
+        margin-bottom: 0.2rem;
+        font-size: 1rem;
+    }
+
+    .resource-info p {
+        color: var(--gray);
+        font-size: 0.85rem;
+    }
+
+    /* ACHIEVEMENTS SECTION */
+    .achievements-section {
+        padding: 3rem 8%;
+        background: var(--light);
+    }
+
+    .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 2rem auto 0;
+    }
+
+    .achievement-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        opacity: 0.5;
+        transition: 0.3s ease;
+    }
+
+    .achievement-card.unlocked {
+        opacity: 1;
+        box-shadow: 0 10px 25px rgba(37,99,235,0.1);
+    }
+
+    .achievement-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .achievement-card h4 {
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .achievement-card p {
+        color: var(--gray);
+        font-size: 0.85rem;
+    }
+
+    /* FOOTER */
+    footer {
+        background: var(--primary);
+        color: #cbd5e1;
+        padding: 3rem 8%;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+    }
+
+    footer h5 {
+        margin-bottom: 1rem;
+        color: white;
+        font-size: 1.1rem;
+    }
+
+    footer ul {
+        list-style: none;
+    }
+
+    footer li {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    footer a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: 0.3s ease;
+    }
+
+    footer a:hover {
+        color: white;
+        text-decoration: underline;
+    }
+
+    footer p {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        line-height: 1.5;
+    }
+
+    .footer-bottom {
+        margin-top: 2rem;
+        border-top: 1px solid #334155;
+        padding-top: 1.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #64748b;
+    }
+
+    /* MODAL */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    .modal.show {
+        display: block;
+    }
+
+    .modal-content {
+        position: relative;
+        background: white;
+        max-width: 1000px;
+        margin: 2rem auto;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: transparent;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--gray);
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        z-index: 10;
+    }
+
+    .modal-close:hover {
+        background: var(--light);
+        color: var(--error);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem 5%;
+        }
+
+        nav ul {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .accessibility-bar {
+            justify-content: center;
+        }
+
+        .page-header h2 {
+            font-size: 2rem;
+        }
+
+        .modules-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .module-actions {
+            flex-direction: column;
+        }
+
+        .btn-primary, .btn-secondary {
+            width: 100%;
+        }
+
+        .module-stats {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-content {
+            margin: 1rem;
+        }
+
+        .progress-stats {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .module-filters {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .filter-btn {
+            width: 100%;
+        }
+
+        .module-meta {
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+    }
+
+    /* PRINT STYLES */
+    @media print {
+        .accessibility-bar,
+        .module-filters,
+        .btn-primary,
+        .btn-secondary,
+        .modal-close,
+        .back-to-modules,
+        footer {
+            display: none;
+        }
+    }
+
+    /* UTILITY CLASSES */
+    .hidden {
+        display: none !important;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-4 {
+        margin-top: 2rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 2rem;
+    }
+</style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Accessibility Controls -->
+    <div class="accessibility-bar">
+        <button class="text-resize" onclick="resizeText('increase')" aria-label="Increase text size">A+</button>
+        <button class="text-resize" onclick="resizeText('decrease')" aria-label="Decrease text size">A-</button>
+        <button class="text-resize" onclick="resizeText('reset')" aria-label="Reset text size">Reset</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+        <h1>CyberWise</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="modules.html" class="active" aria-current="page">Modules</a></li>
+            <li><a href="./resource.html">Resources</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h2>Learning Modules</h2>
+            <p>
+                Work through our comprehensive modules at your own pace. Each module includes 
+                practical examples, interactive quizzes, and a final test. You need to score 
+                <strong>60% or higher</strong> on the final test to complete the module.
+            </p>
+        </section>
+
+        <!-- Progress Overview -->
+        <section class="progress-overview">
+            <div class="progress-stats">
+                <div class="progress-stat-card">
+                    <span class="progress-stat-value" id="completedModules">0</span>
+                    <span class="progress-stat-label">Modules Completed</span>
+                </div>
+                <div class="progress-stat-card">
+                    <span class="progress-stat-value" id="inProgressModules">0</span>
+                    <span class="progress-stat-label">In Progress</span>
+                </div>
+                <div class="progress-stat-card">
+                    <span class="progress-stat-value" id="totalLessons">0</span>
+                    <span class="progress-stat-label">Lessons Learned</span>
+                </div>
+                <div class="progress-stat-card">
+                    <span class="progress-stat-value" id="achievementsCount">0</span>
+                    <span class="progress-stat-label">Achievements</span>
+                </div>
+            </div>
+            
+            <div class="overall-progress">
+                <div class="progress-bar-container">
+                    <span class="progress-bar-label">Overall:</span>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="overallProgressFill" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-bar-label" id="overallProgressPercent">0%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modules Section -->
+        <section class="modules-section">
+            <div class="section-header">
+                <h3>Choose Your Learning Path</h3>
+                <p>Select a module below to begin your cybersecurity journey. Each module takes about 30-40 minutes to complete.</p>
+            </div>
+
+            <!-- Module Filters -->
+            <div class="module-filters">
+                <button class="filter-btn active" data-filter="all">All Modules</button>
+                <button class="filter-btn" data-filter="beginner">Beginner</button>
+                <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                <button class="filter-btn" data-filter="advanced">Advanced</button>
+                <button class="filter-btn" data-filter="in-progress">In Progress</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+
+            <!-- Modules Grid -->
+            <div class="modules-grid" id="modulesGrid">
+                <!-- Module 1: Phishing Awareness -->
+                <div class="module-card" data-level="beginner" data-status="not-started" data-module-id="phishing">
+                    <div class="module-header">
+                        <span class="module-badge">Not Started</span>
+                        <div class="module-icon" aria-hidden="true">🎣</div>
+                        <h4>Phishing & Scam Awareness</h4>
+                        <div class="module-meta">
+                            <span>⏱️ 35 mins</span>
+                            <span>📊 Beginner</span>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">
+                            Learn how to spot fake emails, text messages, and websites designed to steal your personal information.
+                        </p>
+                        <div class="module-progress">
+                            <div class="module-progress-bar">
+                                <div class="module-progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="module-progress-text">
+                                <span>0 of 5 lessons</span>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                        <ul class="module-topics">
+                            <li><span class="topic-uncheck">○</span> What is phishing?</li>
+                            <li><span class="topic-uncheck">○</span> Common scam tactics</li>
+                            <li><span class="topic-uncheck">○</span> Anatomy of a scam email</li>
+                            <li><span class="topic-uncheck">○</span> Safe link checking</li>
+                            <li><span class="topic-uncheck">○</span> Reporting scams</li>
+                        </ul>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('phishing')">Start Module</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2: Password Security -->
+                <div class="module-card" data-level="beginner" data-status="not-started" data-module-id="passwords">
+                    <div class="module-header">
+                        <span class="module-badge">Not Started</span>
+                        <div class="module-icon" aria-hidden="true">🔐</div>
+                        <h4>Password & Account Security</h4>
+                        <div class="module-meta">
+                            <span>⏱️ 30 mins</span>
+                            <span>📊 Beginner</span>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">
+                            Create strong passwords, understand two-factor authentication, and keep your accounts safe.
+                        </p>
+                        <div class="module-progress">
+                            <div class="module-progress-bar">
+                                <div class="module-progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="module-progress-text">
+                                <span>0 of 4 lessons</span>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                        <ul class="module-topics">
+                            <li><span class="topic-uncheck">○</span> Creating strong passwords</li>
+                            <li><span class="topic-uncheck">○</span> Password managers</li>
+                            <li><span class="topic-uncheck">○</span> Two-factor authentication</li>
+                            <li><span class="topic-uncheck">○</span> Account recovery options</li>
+                        </ul>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('passwords')">Start Module</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3: Safe Browsing -->
+                <div class="module-card" data-level="beginner" data-status="not-started" data-module-id="browsing">
+                    <div class="module-header">
+                        <span class="module-badge">Not Started</span>
+                        <div class="module-icon" aria-hidden="true">🌐</div>
+                        <h4>Safe Browsing Practices</h4>
+                        <div class="module-meta">
+                            <span>⏱️ 30 mins</span>
+                            <span>📊 Beginner</span>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">
+                            Navigate websites safely, recognise secure connections, and avoid online tracking.
+                        </p>
+                        <div class="module-progress">
+                            <div class="module-progress-bar">
+                                <div class="module-progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="module-progress-text">
+                                <span>0 of 4 lessons</span>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                        <ul class="module-topics">
+                            <li><span class="topic-uncheck">○</span> Secure websites (HTTPS)</li>
+                            <li><span class="topic-uncheck">○</span> Public Wi-Fi risks</li>
+                            <li><span class="topic-uncheck">○</span> Browser security settings</li>
+                            <li><span class="topic-uncheck">○</span> Privacy protection</li>
+                        </ul>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('browsing')">Start Module</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4: Social Media Safety -->
+                <div class="module-card" data-level="intermediate" data-status="not-started" data-module-id="social">
+                    <div class="module-header">
+                        <span class="module-badge">Not Started</span>
+                        <div class="module-icon" aria-hidden="true">📱</div>
+                        <h4>Social Media Privacy</h4>
+                        <div class="module-meta">
+                            <span>⏱️ 35 mins</span>
+                            <span>📊 Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">
+                            Control your privacy settings, manage friend requests, and share safely on social platforms.
+                        </p>
+                        <div class="module-progress">
+                            <div class="module-progress-bar">
+                                <div class="module-progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="module-progress-text">
+                                <span>0 of 5 lessons</span>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                        <ul class="module-topics">
+                            <li><span class="topic-uncheck">○</span> Privacy settings overview</li>
+                            <li><span class="topic-uncheck">○</span> Friend request scams</li>
+                            <li><span class="topic-uncheck">○</span> What to share/not share</li>
+                            <li><span class="topic-uncheck">○</span> Blocking and reporting</li>
+                            <li><span class="topic-uncheck">○</span> Location sharing risks</li>
+                        </ul>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('social')">Start Module</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5: Online Banking & Shopping -->
+                <div class="module-card" data-level="intermediate" data-status="not-started" data-module-id="banking">
+                    <div class="module-header">
+                        <span class="module-badge">Not Started</span>
+                        <div class="module-icon" aria-hidden="true">💳</div>
+                        <h4>Secure Banking & Shopping</h4>
+                        <div class="module-meta">
+                            <span>⏱️ 40 mins</span>
+                            <span>📊 Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">
+                            Learn how to bank and shop online safely, recognise fake stores, and protect your money.
+                        </p>
+                        <div class="module-progress">
+                            <div class="module-progress-bar">
+                                <div class="module-progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="module-progress-text">
+                                <span>0 of 5 lessons</span>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                        <ul class="module-topics">
+                            <li><span class="topic-uncheck">○</span> Secure payment methods</li>
+                            <li><span class="topic-uncheck">○</span> Spotting fake online stores</li>
+                            <li><span class="topic-uncheck">○</span> Banking app safety</li>
+                            <li><span class="topic-uncheck">○</span> Credit vs debit cards</li>
+                            <li><span class="topic-uncheck">○</span> Refund and dispute rights</li>
+                        </ul>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('banking')">Start Module</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6: Device Security -->
+                <div class="module-card" data-level="advanced" data-status="not-started" data-module-id="device">
+                    <div class="module-header">
+                        <span class="module-badge">Not Started</span>
+                        <div class="module-icon" aria-hidden="true">💻</div>
+                        <h4>Device & Software Security</h4>
+                        <div class="module-meta">
+                            <span>⏱️ 35 mins</span>
+                            <span>📊 Advanced</span>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">
+                            Keep your computer, tablet, and smartphone secure with updates, antivirus, and backups.
+                        </p>
+                        <div class="module-progress">
+                            <div class="module-progress-bar">
+                                <div class="module-progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="module-progress-text">
+                                <span>0 of 4 lessons</span>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                        <ul class="module-topics">
+                            <li><span class="topic-uncheck">○</span> Software updates</li>
+                            <li><span class="topic-uncheck">○</span> Antivirus protection</li>
+                            <li><span class="topic-uncheck">○</span> Backing up your data</li>
+                            <li><span class="topic-uncheck">○</span> Secure device disposal</li>
+                        </ul>
+                        <div class="module-actions">
+                            <button class="btn-primary" onclick="openModule('device')">Start Module</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="achievements-section">
+            <h3 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">Your Achievements</h3>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎓</div>
+                    <h4>First Module</h4>
+                    <p>Complete your first module</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🔐</div>
+                    <h4>Password Pro</h4>
+                    <p>Master password security</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏃</div>
+                    <h4>Quick Learner</h4>
+                    <p>Complete 3 modules</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🛡️</div>
+                    <h4>Security Champion</h4>
+                    <p>Complete all modules</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Detailed Module Modal -->
+    <div id="moduleModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModule()" aria-label="Close module">&times;</button>
+            
+            <!-- Module 1: Phishing Awareness Detailed View -->
+            <div id="phishingModule" class="detailed-module hidden">
+                <div class="module-progress-header">
+                    <button class="back-to-modules" onclick="closeModule()">← Back to Modules</button>
+                    <h2>Phishing & Scam Awareness</h2>
+                    <p>Learn to spot and avoid online scams</p>
+                    <div class="module-stats">
+                        <div class="module-stat">
+                            <span class="module-stat-value">5</span>
+                            <span class="module-stat-label">Lessons</span>
+                        </div>
+                        <div class="module-stat">
+                            <span class="module-stat-value">35</span>
+                            <span class="module-stat-label">Minutes</span>
+                        </div>
+                        <div class="module-stat">
+                            <span class="module-stat-value">Beginner</span>
+                            <span class="module-stat-label">Level</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container" style="margin-top: 1rem;">
+                        <span class="progress-bar-label">Progress:</span>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-bar-label">0%</span>
+                    </div>
+                </div>
+
+                <!-- Lesson 1: What is Phishing? -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 1: What is Phishing?</h3>
+                    <div class="content-card">
+                        <p>Phishing is when scammers try to trick you into giving them your personal information. They might pretend to be someone you trust, like your bank, a government agency, or a company you use.</p>
+                        
+                        <div class="example-box">
+                            <span class="label">EXAMPLE</span>
+                            <p><strong>Fake email scenario:</strong> You receive an email that looks like it's from your bank saying "Your account has been locked! Click here to verify your details immediately."</p>
+                            <p>This is likely a phishing attempt. Your bank will never ask you to click a link in an email to verify your account.</p>
+                        </div>
+
+                        <div class="warning-box">
+                            <p><strong>⚠️ Key Point:</strong> Phishing messages often create a sense of urgency or fear to make you act without thinking.</p>
+                        </div>
+                    </div>
+
+                    <div class="quiz-section">
+                        <h4>Quick Check</h4>
+                        <div class="quiz-question">
+                            <p>What is the main goal of a phishing scam?</p>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1" value="wrong"> To sell you products
+                                </label>
+                                <label class="quiz-option" data-correct="true">
+                                    <input type="radio" name="q1" value="correct"> To steal your personal information
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1" value="wrong"> To update your computer
+                                </label>
+                            </div>
+                            <div class="quiz-feedback" id="q1-feedback"></div>
+                            <button class="btn-secondary" style="margin-top: 1rem;" onclick="checkQuizAnswer('q1')">Check Answer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 2: Common Scam Tactics -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 2: Common Scam Tactics</h3>
+                    <div class="content-card">
+                        <p>Scammers use different tricks to catch you off guard. Here are the most common ones to watch out for:</p>
+                        
+                        <div class="tips-list">
+                            <li>
+                                <span class="tip-number">1</span>
+                                <div>
+                                    <strong>The "Urgent" Scam</strong>
+                                    <p>Messages claiming your account will be closed or you'll be fined if you don't act NOW.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="tip-number">2</span>
+                                <div>
+                                    <strong>The "Prize" Scam</strong>
+                                    <p>"Congratulations! You've won a prize!" But you need to pay a fee or share bank details to claim it.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="tip-number">3</span>
+                                <div>
+                                    <strong>The "Tech Support" Scam</strong>
+                                    <p>Pop-ups or calls claiming your computer has a virus and you need to pay for help.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="tip-number">4</span>
+                                <div>
+                                    <strong>The "Grandparent" Scam</strong>
+                                    <p>Someone calls pretending to be a family member in trouble who needs money immediately.</p>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="success-box">
+                            <p><strong>✅ Remember:</strong> Legitimate companies won't pressure you to act immediately or ask for payments in unusual ways (like gift cards).</p>
+                        </div>
+                    </div>
+
+                    <div class="quiz-section">
+                        <h4>Quick Check</h4>
+                        <div class="quiz-question">
+                            <p>Which of these is a common scam tactic?</p>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="q2" value="wrong"> Asking you to visit their website
+                                </label>
+                                <label class="quiz-option" data-correct="true">
+                                    <input type="radio" name="q2" value="correct"> Creating a false sense of urgency
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q2" value="wrong"> Sending you a newsletter
+                                </label>
+                            </div>
+                            <div class="quiz-feedback" id="q2-feedback"></div>
+                            <button class="btn-secondary" style="margin-top: 1rem;" onclick="checkQuizAnswer('q2')">Check Answer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 3: Anatomy of a Scam Email -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 3: Anatomy of a Scam Email</h3>
+                    <div class="content-card">
+                        <p>Here are 5 red flags to look for in emails:</p>
+                        
+                        <div class="checklist">
+                            <li>
+                                <input type="checkbox" id="check1">
+                                <label for="check1">❓ <strong>Unknown sender:</strong> Check the email address carefully - it might look almost real but have extra letters</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="check2">
+                                <label for="check2">📝 <strong>Poor spelling and grammar:</strong> Real companies proofread their emails</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="check3">
+                                <label for="check3">🔗 <strong>Suspicious links:</strong> Hover over links (without clicking) to see where they really go</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="check4">
+                                <label for="check4">⚠️ <strong>Threatening language:</strong> "Your account will be closed in 24 hours!"</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="check5">
+                                <label for="check5">📎 <strong>Unexpected attachments:</strong> Never open attachments you weren't expecting</label>
+                            </li>
+                        </div>
+
+                        <div class="example-box" style="margin-top: 1.5rem;">
+                            <span class="label">COMPARE THESE</span>
+                            <p><strong>Fake:</strong> From: "support@amaz0n-security.com" - "Your Amazon account suspended! Click here to verify immediately"</p>
+                            <p><strong>Real:</strong> From: "amazon.co.uk" - "Your recent order summary" (no urgent demands, just order info)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 4: Safe Link Checking -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 4: Checking Links Safely</h3>
+                    <div class="content-card">
+                        <p>Before clicking any link, here's how to check if it's safe:</p>
+                        
+                        <div class="tips-list">
+                            <li>
+                                <span class="tip-number">1</span>
+                                <div>
+                                    <strong>Hover, don't click</strong>
+                                    <p>On a computer, hover your mouse over the link. Look at the bottom of your browser - the real web address will appear.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="tip-number">2</span>
+                                <div>
+                                    <strong>Check for HTTPS</strong>
+                                    <p>Secure websites start with https:// (the 's' stands for secure). Look for the padlock icon 🔒.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="tip-number">3</span>
+                                <div>
+                                    <strong>Type it yourself</strong>
+                                    <p>If unsure, open your browser and type the company's web address yourself. Don't use the link from the email.</p>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="warning-box">
+                            <p><strong>⚠️ Never click links in unexpected messages!</strong> Even if they look real, go directly to the website by typing the address yourself.</p>
+                        </div>
+                    </div>
+
+                    <div class="quiz-section">
+                        <h4>Practice Exercise</h4>
+                        <div class="quiz-question">
+                            <p>You get an email from "your bank" with a link. What should you do?</p>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="q4" value="wrong"> Click the link to check your account
+                                </label>
+                                <label class="quiz-option" data-correct="true">
+                                    <input type="radio" name="q4" value="correct"> Go to the bank's website by typing the address yourself
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q4" value="wrong"> Reply to the email asking if it's real
+                                </label>
+                            </div>
+                            <div class="quiz-feedback" id="q4-feedback"></div>
+                            <button class="btn-secondary" style="margin-top: 1rem;" onclick="checkQuizAnswer('q4')">Check Answer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 5: Reporting Scams -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 5: How to Report Scams</h3>
+                    <div class="content-card">
+                        <p>If you spot a scam or accidentally respond to one, here's what to do:</p>
+                        
+                        <div class="resources-grid">
+                            <a href="#" class="resource-card" onclick="alert('In a real website, this would link to reporting authorities'); return false;">
+                                <span class="resource-icon">📞</span>
+                                <div class="resource-info">
+                                    <h5>Action Fraud</h5>
+                                    <p>Report scams to the UK's national reporting centre</p>
+                                </div>
+                            </a>
+                            <a href="#" class="resource-card" onclick="alert('In a real website, this would link to your bank\'s reporting page'); return false;">
+                                <span class="resource-icon">🏦</span>
+                                <div class="resource-info">
+                                    <h5>Your Bank</h5>
+                                    <p>Contact immediately if you shared financial details</p>
+                                </div>
+                            </a>
+                            <a href="#" class="resource-card" onclick="alert('In a real website, this would link to Citizens Advice'); return false;">
+                                <span class="resource-icon">📋</span>
+                                <div class="resource-info">
+                                    <h5>Citizens Advice</h5>
+                                    <p>Get help and advice about scams</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="success-box" style="margin-top: 1.5rem;">
+                            <p><strong>✅ Remember:</strong> Reporting scams helps protect others. Never feel embarrassed - scammers are professionals at what they do.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FINAL TEST SECTION -->
+                <div class="final-test-section" id="phishing-test">
+                    <h3>📝 Module Test: Phishing & Scam Awareness</h3>
+                    <p>Complete all 5 questions. You need to score <strong>60% (3 out of 5 correct)</strong> to pass and complete the module.</p>
+                    
+                    <div id="phishing-test-questions">
+                        <!-- Question 1 -->
+                        <div class="test-question" data-question="1">
+                            <p>1. What is the primary goal of a phishing attack?</p>
+                            <label class="test-option"><input type="radio" name="phish-q1" value="wrong"> To sell you antivirus software</label>
+                            <label class="test-option"><input type="radio" name="phish-q1" value="correct"> To trick you into revealing personal information</label>
+                            <label class="test-option"><input type="radio" name="phish-q1" value="wrong"> To improve your internet speed</label>
+                        </div>
+                        <!-- Question 2 -->
+                        <div class="test-question" data-question="2">
+                            <p>2. Which of these is a common sign of a phishing email?</p>
+                            <label class="test-option"><input type="radio" name="phish-q2" value="wrong"> Personalized greeting with your name</label>
+                            <label class="test-option"><input type="radio" name="phish-q2" value="correct"> Urgent threats to close your account</label>
+                            <label class="test-option"><input type="radio" name="phish-q2" value="wrong"> Clear unsubscribe link at the bottom</label>
+                        </div>
+                        <!-- Question 3 -->
+                        <div class="test-question" data-question="3">
+                            <p>3. What should you do if you receive an unexpected email with a link from your bank?</p>
+                            <label class="test-option"><input type="radio" name="phish-q3" value="wrong"> Click the link to see if it's real</label>
+                            <label class="test-option"><input type="radio" name="phish-q3" value="wrong"> Reply and ask if they sent it</label>
+                            <label class="test-option"><input type="radio" name="phish-q3" value="correct"> Type your bank's website address into your browser manually</label>
+                        </div>
+                        <!-- Question 4 -->
+                        <div class="test-question" data-question="4">
+                            <p>4. A pop-up on your computer says you have a virus and gives you a number to call for help. This is likely a:</p>
+                            <label class="test-option"><input type="radio" name="phish-q4" value="wrong"> Helpful security alert</label>
+                            <label class="test-option"><input type="radio" name="phish-q4" value="correct"> Tech support scam</label>
+                            <label class="test-option"><input type="radio" name="phish-q4" value="wrong"> Free virus scan tool</label>
+                        </div>
+                        <!-- Question 5 -->
+                        <div class="test-question" data-question="5">
+                            <p>5. If you think you've fallen for a scam and shared your bank details, what should you do first?</p>
+                            <label class="test-option"><input type="radio" name="phish-q5" value="wrong"> Wait to see if anything happens</label>
+                            <label class="test-option"><input type="radio" name="phish-q5" value="wrong"> Delete all your emails</label>
+                            <label class="test-option"><input type="radio" name="phish-q5" value="correct"> Contact your bank immediately</label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" style="background: white; color: var(--primary); margin-top: 1.5rem;" onclick="scoreTest('phishing')">Submit Test</button>
+                    <div id="phishing-test-score" class="test-score"></div>
+                    <div class="pass-required" id="phishing-test-pass"></div>
+                </div>
+            </div>
+
+            <!-- Module 2: Password Security Detailed View -->
+            <div id="passwordsModule" class="detailed-module hidden">
+                <div class="module-progress-header">
+                    <button class="back-to-modules" onclick="closeModule()">← Back to Modules</button>
+                    <h2>Password & Account Security</h2>
+                    <p>Create strong passwords and protect your accounts</p>
+                    <div class="module-stats">
+                        <div class="module-stat"><span class="module-stat-value">4</span><span class="module-stat-label">Lessons</span></div>
+                        <div class="module-stat"><span class="module-stat-value">30</span><span class="module-stat-label">Minutes</span></div>
+                        <div class="module-stat"><span class="module-stat-value">Beginner</span><span class="module-stat-label">Level</span></div>
+                    </div>
+                    <div class="progress-bar-container" style="margin-top: 1rem;">
+                        <span class="progress-bar-label">Progress:</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 0%"></div></div><span class="progress-bar-label">0%</span>
+                    </div>
+                </div>
+                <!-- Lesson 1: Creating Strong Passwords -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 1: Creating Strong Passwords</h3>
+                    <div class="content-card">
+                        <p>A strong password is your first line of defense. Follow these guidelines:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--gray);">
+                            <li>Use at least 12 characters</li>
+                            <li>Mix uppercase, lowercase, numbers, and symbols</li>
+                            <li>Avoid common words or personal info</li>
+                            <li>Never reuse passwords across different sites</li>
+                        </ul>
+                        <div class="example-box">
+                            <span class="label">EXAMPLE</span>
+                            <p><strong>Weak:</strong> "password123" or "John1950"</p>
+                            <p><strong>Strong:</strong> "C0mp13x!P@ssw0rd" or use a passphrase like "Purple-Panda-Flying-99!"</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lesson 2: Password Managers -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 2: Using Password Managers</h3>
+                    <div class="content-card">
+                        <p>A password manager securely stores all your passwords. You only need to remember one master password. Benefits include:</p>
+                        <div class="tips-list">
+                            <li><span class="tip-number">✓</span> Creates strong, random passwords for you</li>
+                            <li><span class="tip-number">✓</span> Auto-fills login details on websites</li>
+                            <li><span class="tip-number">✓</span> Alerts you if a site is fake</li>
+                        </div>
+                        <p>Popular options: LastPass, 1Password, or Bitwarden (free).</p>
+                    </div>
+                </div>
+                <!-- Lesson 3: Two-Factor Authentication -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 3: Two-Factor Authentication (2FA)</h3>
+                    <div class="content-card">
+                        <p>2FA adds a second layer of security. Even if someone steals your password, they can't log in without the second step.</p>
+                        <div class="warning-box">
+                            <p><strong>Enable 2FA wherever possible!</strong> Methods include:</p>
+                            <ul style="margin-left: 1.5rem;">
+                                <li>Text message code</li>
+                                <li>Authentication app (Google Authenticator)</li>
+                                <li>Physical security key</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lesson 4: Account Recovery -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 4: Account Recovery Options</h3>
+                    <div class="content-card">
+                        <p>Set up recovery options in case you get locked out:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--gray);">
+                            <li>Add a recovery email address</li>
+                            <li>Add a phone number for SMS recovery</li>
+                            <li>Keep backup codes in a safe place</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- FINAL TEST for Passwords -->
+                <div class="final-test-section" id="passwords-test">
+                    <h3>📝 Module Test: Password & Account Security</h3>
+                    <p>Complete all 5 questions. You need to score <strong>60% (3 out of 5 correct)</strong> to pass.</p>
+                    <div id="passwords-test-questions">
+                        <div class="test-question"><p>1. What is the minimum recommended length for a strong password?</p>
+                            <label class="test-option"><input type="radio" name="pass-q1" value="wrong"> 6 characters</label>
+                            <label class="test-option"><input type="radio" name="pass-q1" value="correct"> 12 characters</label>
+                            <label class="test-option"><input type="radio" name="pass-q1" value="wrong"> 20 characters</label>
+                        </div>
+                        <div class="test-question"><p>2. What is the main benefit of a password manager?</p>
+                            <label class="test-option"><input type="radio" name="pass-q2" value="wrong"> It makes your internet faster</label>
+                            <label class="test-option"><input type="radio" name="pass-q2" value="correct"> It creates and stores strong, unique passwords</label>
+                            <label class="test-option"><input type="radio" name="pass-q2" value="wrong"> It sends your passwords to the police</label>
+                        </div>
+                        <div class="test-question"><p>3. What is Two-Factor Authentication (2FA)?</p>
+                            <label class="test-option"><input type="radio" name="pass-q3" value="wrong"> Using two different passwords</label>
+                            <label class="test-option"><input type="radio" name="pass-q3" value="correct"> A second step to verify it's you logging in</label>
+                            <label class="test-option"><input type="radio" name="pass-q3" value="wrong"> Having two email accounts</label>
+                        </div>
+                        <div class="test-question"><p>4. Is it safe to use the same password for multiple websites?</p>
+                            <label class="test-option"><input type="radio" name="pass-q4" value="correct"> No, if one site is hacked, all accounts are at risk</label>
+                            <label class="test-option"><input type="radio" name="pass-q4" value="wrong"> Yes, it's easier to remember</label>
+                            <label class="test-option"><input type="radio" name="pass-q4" value="wrong"> Only if it's a very strong password</label>
+                        </div>
+                        <div class="test-question"><p>5. Which of these is a strong password?</p>
+                            <label class="test-option"><input type="radio" name="pass-q5" value="wrong"> Fluffy123</label>
+                            <label class="test-option"><input type="radio" name="pass-q5" value="wrong"> password</label>
+                            <label class="test-option"><input type="radio" name="pass-q5" value="correct"> H3ad-0f-C1ass-2026!</label>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="background: white; color: var(--primary); margin-top: 1.5rem;" onclick="scoreTest('passwords')">Submit Test</button>
+                    <div id="passwords-test-score" class="test-score"></div>
+                    <div class="pass-required" id="passwords-test-pass"></div>
+                </div>
+            </div>
+
+            <!-- Module 3: Safe Browsing -->
+            <div id="browsingModule" class="detailed-module hidden">
+                <div class="module-progress-header">
+                    <button class="back-to-modules" onclick="closeModule()">← Back to Modules</button>
+                    <h2>Safe Browsing Practices</h2>
+                    <p>Navigate the web securely</p>
+                    <div class="module-stats">
+                        <div class="module-stat"><span class="module-stat-value">4</span><span class="module-stat-label">Lessons</span></div>
+                        <div class="module-stat"><span class="module-stat-value">30</span><span class="module-stat-label">Minutes</span></div>
+                        <div class="module-stat"><span class="module-stat-value">Beginner</span><span class="module-stat-label">Level</span></div>
+                    </div>
+                    <div class="progress-bar-container" style="margin-top: 1rem;">
+                        <span class="progress-bar-label">Progress:</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 0%"></div></div><span class="progress-bar-label">0%</span>
+                    </div>
+                </div>
+                <!-- Lesson 1: Secure Websites (HTTPS) -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 1: Secure Websites (HTTPS)</h3>
+                    <div class="content-card">
+                        <p>Always look for "https://" at the beginning of a web address. The 's' stands for secure and means your connection is encrypted.</p>
+                        <div class="example-box">
+                            <span class="label">CHECK FOR THE PADLOCK 🔒</span>
+                            <p>In your browser's address bar, a padlock icon means the site uses HTTPS. Never enter personal information on a site without this.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lesson 2: Public Wi-Fi Risks -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 2: Public Wi-Fi Risks</h3>
+                    <div class="content-card">
+                        <p>Public Wi-Fi (in cafes, airports) is not secure. Others on the same network could potentially see your activity.</p>
+                        <div class="warning-box">
+                            <p><strong>Avoid banking or shopping on public Wi-Fi.</strong> If you must, use a VPN (Virtual Private Network) or your phone's mobile hotspot.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lesson 3: Browser Security Settings -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 3: Browser Security Settings</h3>
+                    <div class="content-card">
+                        <p>Modern browsers have built-in security features. Ensure they are enabled:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--gray);">
+                            <li>Pop-up blocker (should be ON)</li>
+                            <li>"Safe Browsing" (warns you about dangerous sites)</li>
+                            <li>Automatic updates (keep your browser updated)</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Lesson 4: Privacy Protection -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 4: Privacy Protection</h3>
+                    <div class="content-card">
+                        <p>Reduce what websites can track:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--gray);">
+                            <li>Clear your browsing history and cookies regularly</li>
+                            <li>Use private or "incognito" mode for sensitive searches</li>
+                            <li>Consider using a search engine like DuckDuckGo that doesn't track you</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- FINAL TEST for Browsing -->
+                <div class="final-test-section" id="browsing-test">
+                    <h3>📝 Module Test: Safe Browsing</h3>
+                    <div id="browsing-test-questions">
+                        <div class="test-question"><p>1. What does the 's' in 'https://' stand for?</p>
+                            <label class="test-option"><input type="radio" name="browse-q1" value="wrong"> safe</label>
+                            <label class="test-option"><input type="radio" name="browse-q1" value="correct"> secure</label>
+                            <label class="test-option"><input type="radio" name="browse-q1" value="wrong"> simple</label>
+                        </div>
+                        <div class="test-question"><p>2. Is it safe to check your bank balance on public cafe Wi-Fi?</p>
+                            <label class="test-option"><input type="radio" name="browse-q2" value="wrong"> Yes, it's usually fine</label>
+                            <label class="test-option"><input type="radio" name="browse-q2" value="correct"> No, it's risky without a VPN</label>
+                            <label class="test-option"><input type="radio" name="browse-q2" value="wrong"> Only if you ask permission</label>
+                        </div>
+                        <div class="test-question"><p>3. Which browser feature warns you about dangerous websites?</p>
+                            <label class="test-option"><input type="radio" name="browse-q3" value="correct"> Safe Browsing</label>
+                            <label class="test-option"><input type="radio" name="browse-q3" value="wrong"> Bookmark manager</label>
+                            <label class="test-option"><input type="radio" name="browse-q3" value="wrong"> Home button</label>
+                        </div>
+                        <div class="test-question"><p>4. What is 'private browsing' or 'incognito mode' used for?</p>
+                            <label class="test-option"><input type="radio" name="browse-q4" value="wrong"> To hide your activity from your internet provider</label>
+                            <label class="test-option"><input type="radio" name="browse-q4" value="correct"> To browse without saving history on your device</label>
+                            <label class="test-option"><input type="radio" name="browse-q4" value="wrong"> To make your computer faster</label>
+                        </div>
+                        <div class="test-question"><p>5. What icon should you look for to confirm a website is secure?</p>
+                            <label class="test-option"><input type="radio" name="browse-q5" value="wrong"> A star</label>
+                            <label class="test-option"><input type="radio" name="browse-q5" value="correct"> A padlock</label>
+                            <label class="test-option"><input type="radio" name="browse-q5" value="wrong"> A wifi symbol</label>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="background: white; color: var(--primary); margin-top: 1.5rem;" onclick="scoreTest('browsing')">Submit Test</button>
+                    <div id="browsing-test-score" class="test-score"></div>
+                </div>
+            </div>
+
+            <!-- Module 4: Social Media Privacy -->
+            <div id="socialModule" class="detailed-module hidden">
+                <div class="module-progress-header">
+                    <button class="back-to-modules" onclick="closeModule()">← Back to Modules</button>
+                    <h2>Social Media Privacy</h2>
+                    <p>Control your online presence safely</p>
+                    <div class="module-stats">
+                        <div class="module-stat"><span class="module-stat-value">5</span><span class="module-stat-label">Lessons</span></div>
+                        <div class="module-stat"><span class="module-stat-value">35</span><span class="module-stat-label">Minutes</span></div>
+                        <div class="module-stat"><span class="module-stat-value">Intermediate</span><span class="module-stat-label">Level</span></div>
+                    </div>
+                    <div class="progress-bar-container" style="margin-top: 1rem;"><span class="progress-bar-label">Progress:</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 0%"></div></div><span class="progress-bar-label">0%</span></div>
+                </div>
+                <!-- Lesson 1: Privacy Settings Overview -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 1: Privacy Settings Overview</h3>
+                    <div class="content-card">
+                        <p>Each social platform has privacy settings. Key settings to check:</p>
+                        <ul style="margin-left: 1.5rem;"><li>Who can see your posts (set to "Friends" not "Public")</li><li>Who can send you friend requests</li><li>Whether your profile appears in search engines</li></ul>
+                    </div>
+                </div>
+                <!-- Lesson 2: Friend Request Scams -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 2: Friend Request Scams</h3>
+                    <div class="content-card">
+                        <p>Scammers create fake profiles. Be cautious if:</p>
+                        <div class="warning-box"><p>You receive a request from a stranger with very few friends. Or a duplicate request from someone you're already friends with.</p></div>
+                    </div>
+                </div>
+                <!-- Lesson 3: What to Share/Not Share -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 3: What to Share/Not Share</h3>
+                    <div class="content-card">
+                        <p>Avoid posting:</p>
+                        <ul><li>Your full birth date</li><li>Home address</li><li>When you're going on holiday (burglars watch for this)</li><li>Photos of tickets (barcodes can be copied)</li></ul>
+                    </div>
+                </div>
+                <!-- Lesson 4: Blocking and Reporting -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 4: Blocking and Reporting</h3>
+                    <div class="content-card">
+                        <p>Know how to block and report users. If someone harasses you or seems fake, use the "Report" function. Blocking prevents them from contacting you.</p>
+                    </div>
+                </div>
+                <!-- Lesson 5: Location Sharing Risks -->
+                <div class="lesson-section">
+                    <h3>📘 Lesson 5: Location Sharing Risks</h3>
+                    <div class="content-card">
+                        <p>Turn off location services for social media apps when not needed. Posting photos from home can reveal your exact location.</p>
+                    </div>
+                </div>
+                <!-- FINAL TEST for Social -->
+                <div class="final-test-section" id="social-test">
+                    <h3>📝 Module Test: Social Media Privacy</h3>
+                    <div id="social-test-questions">
+                        <div class="test-question"><p>1. Who should your social media posts be visible to, ideally?</p>
+                            <label class="test-option"><input type="radio" name="social-q1" value="wrong"> Public</label>
+                            <label class="test-option"><input type="radio" name="social-q1" value="correct"> Friends only</label>
+                            <label class="test-option"><input type="radio" name="social-q1" value="wrong"> Everyone on the internet</label>
+                        </div>
+                        <div class="test-question"><p>2. Is it safe to accept friend requests from strangers?</p>
+                            <label class="test-option"><input type="radio" name="social-q2" value="correct"> No, it could be a fake account or scammer</label>
+                            <label class="test-option"><input type="radio" name="social-q2" value="wrong"> Yes, the more friends the better</label>
+                            <label class="test-option"><input type="radio" name="social-q2" value="wrong"> Only if they have a nice profile picture</label>
+                        </div>
+                        <div class="test-question"><p>3. Which of these is safe to post online?</p>
+                            <label class="test-option"><input type="radio" name="social-q3" value="wrong"> A photo of your plane ticket</label>
+                            <label class="test-option"><input type="radio" name="social-q3" value="wrong"> Your home address</label>
+                            <label class="test-option"><input type="radio" name="social-q3" value="correct"> A general photo of your garden</label>
+                        </div>
+                        <div class="test-question"><p>4. What should you do if someone is harassing you on social media?</p>
+                            <label class="test-option"><input type="radio" name="social-q4" value="correct"> Block and report them</label>
+                            <label class="test-option"><input type="radio" name="social-q4" value="wrong"> Argue with them in the comments</label>
+                            <label class="test-option"><input type="radio" name="social-q4" value="wrong"> Ignore it and hope it stops</label>
+                        </div>
+                        <div class="test-question"><p>5. Why should you avoid posting about upcoming holidays?</p>
+                            <label class="test-option"><input type="radio" name="social-q5" value="wrong"> It makes your friends jealous</label>
+                            <label class="test-option"><input type="radio" name="social-q5" value="correct"> It signals to burglars that your home will be empty</label>
+                            <label class="test-option"><input type="radio" name="social-q5" value="wrong"> The airline might cancel your flight</label>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="background: white; color: var(--primary); margin-top: 1.5rem;" onclick="scoreTest('social')">Submit Test</button>
+                    <div id="social-test-score" class="test-score"></div>
+                </div>
+            </div>
+
+            <!-- Module 5: Banking & Shopping -->
+            <div id="bankingModule" class="detailed-module hidden">
+                <div class="module-progress-header">
+                    <button class="back-to-modules" onclick="closeModule()">← Back to Modules</button>
+                    <h2>Secure Banking & Shopping</h2>
+                    <p>Protect your money online</p>
+                    <div class="module-stats"><div class="module-stat"><span class="module-stat-value">5</span><span class="module-stat-label">Lessons</span></div><div class="module-stat"><span class="module-stat-value">40</span><span class="module-stat-label">Minutes</span></div><div class="module-stat"><span class="module-stat-value">Intermediate</span><span class="module-stat-label">Level</span></div></div>
+                    <div class="progress-bar-container" style="margin-top: 1rem;"><span class="progress-bar-label">Progress:</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 0%"></div></div><span class="progress-bar-label">0%</span></div>
+                </div>
+                <!-- Lesson 1: Secure Payment Methods -->
+                <div class="lesson-section"><h3>📘 Lesson 1: Secure Payment Methods</h3><div class="content-card"><p>Use credit cards for online shopping—they offer better fraud protection than debit cards. PayPal also adds a layer of security.</p></div></div>
+                <!-- Lesson 2: Spotting Fake Online Stores -->
+                <div class="lesson-section"><h3>📘 Lesson 2: Spotting Fake Online Stores</h3><div class="content-card"><p>Warning signs: prices too good to be true, no contact info, poor English, no reviews elsewhere. Check trustpilot.com for reviews.</p></div></div>
+                <!-- Lesson 3: Banking App Safety -->
+                <div class="lesson-section"><h3>📘 Lesson 3: Banking App Safety</h3><div class="content-card"><p>Only download your bank's official app from the Apple App Store or Google Play Store. Enable biometric login (fingerprint/face).</p></div></div>
+                <!-- Lesson 4: Credit vs Debit Cards -->
+                <div class="lesson-section"><h3>📘 Lesson 4: Credit vs Debit Cards</h3><div class="content-card"><p>Credit cards use the bank's money, so if fraud occurs, your own cash isn't frozen. Debit cards draw directly from your account.</p></div></div>
+                <!-- Lesson 5: Refund and Dispute Rights -->
+                <div class="lesson-section"><h3>📘 Lesson 5: Refund and Dispute Rights</h3><div class="content-card"><p>In the UK, Section 75 of the Consumer Credit Act protects purchases over £100 made on a credit card. Your bank also has a "chargeback" scheme for debit cards.</p></div></div>
+                <!-- FINAL TEST for Banking -->
+                <div class="final-test-section" id="banking-test">
+                    <h3>📝 Module Test: Secure Banking & Shopping</h3>
+                    <div id="banking-test-questions">
+                        <div class="test-question"><p>1. Which payment method generally offers the best fraud protection?</p>
+                            <label class="test-option"><input type="radio" name="bank-q1" value="wrong"> Debit card</label>
+                            <label class="test-option"><input type="radio" name="bank-q1" value="correct"> Credit card</label>
+                            <label class="test-option"><input type="radio" name="bank-q1" value="wrong"> Bank transfer</label>
+                        </div>
+                        <div class="test-question"><p>2. A website is selling a £500 TV for £50. What might this be?</p>
+                            <label class="test-option"><input type="radio" name="bank-q2" value="wrong"> A clearance sale</label>
+                            <label class="test-option"><input type="radio" name="bank-q2" value="correct"> Likely a scam or fake store</label>
+                            <label class="test-option"><input type="radio" name="bank-q2" value="wrong"> A lucky find</label>
+                        </div>
+                        <div class="test-question"><p>3. Where should you download your banking app from?</p>
+                            <label class="test-option"><input type="radio" name="bank-q3" value="correct"> Official app store (Apple/Google)</label>
+                            <label class="test-option"><input type="radio" name="bank-q3" value="wrong"> A link in an email</label>
+                            <label class="test-option"><input type="radio" name="bank-q3" value="wrong"> A pop-up ad</label>
+                        </div>
+                        <div class="test-question"><p>4. What is Section 75?</p>
+                            <label class="test-option"><input type="radio" name="bank-q4" value="wrong"> A type of bank account</label>
+                            <label class="test-option"><input type="radio" name="bank-q4" value="correct"> A law protecting credit card purchases</label>
+                            <label class="test-option"><input type="radio" name="bank-q4" value="wrong"> A scam reporting number</label>
+                        </div>
+                        <div class="test-question"><p>5. Which is a sign of a fake shopping website?</p>
+                            <label class="test-option"><input type="radio" name="bank-q5" value="wrong"> Clear contact information</label>
+                            <label class="test-option"><input type="radio" name="bank-q5" value="wrong"> Positive Trustpilot reviews</label>
+                            <label class="test-option"><input type="radio" name="bank-q5" value="correct"> Prices that seem too good to be true</label>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="background: white; color: var(--primary); margin-top: 1.5rem;" onclick="scoreTest('banking')">Submit Test</button>
+                    <div id="banking-test-score" class="test-score"></div>
+                </div>
+            </div>
+
+            <!-- Module 6: Device Security -->
+            <div id="deviceModule" class="detailed-module hidden">
+                <div class="module-progress-header">
+                    <button class="back-to-modules" onclick="closeModule()">← Back to Modules</button>
+                    <h2>Device & Software Security</h2>
+                    <p>Keep your devices safe</p>
+                    <div class="module-stats"><div class="module-stat"><span class="module-stat-value">4</span><span class="module-stat-label">Lessons</span></div><div class="module-stat"><span class="module-stat-value">35</span><span class="module-stat-label">Minutes</span></div><div class="module-stat"><span class="module-stat-value">Advanced</span><span class="module-stat-label">Level</span></div></div>
+                    <div class="progress-bar-container" style="margin-top: 1rem;"><span class="progress-bar-label">Progress:</span><div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 0%"></div></div><span class="progress-bar-label">0%</span></div>
+                </div>
+                <!-- Lesson 1: Software Updates -->
+                <div class="lesson-section"><h3>📘 Lesson 1: Software Updates</h3><div class="content-card"><p>Updates fix security holes. Enable automatic updates on your computer, phone, and apps.</p><div class="warning-box"><p>Ignoring updates leaves you vulnerable to known hacks.</p></div></div></div>
+                <!-- Lesson 2: Antivirus Protection -->
+                <div class="lesson-section"><h3>📘 Lesson 2: Antivirus Protection</h3><div class="content-card"><p>Use reputable antivirus software. Windows comes with "Windows Security" (formerly Defender) which is good. Keep it active.</p></div></div>
+                <!-- Lesson 3: Backing Up Your Data -->
+                <div class="lesson-section"><h3>📘 Lesson 3: Backing Up Your Data</h3><div class="content-card"><p>If your device is hacked or fails, backups save your photos and files. Follow the "3-2-1 rule": 3 copies, on 2 different media, with 1 off-site (e.g., cloud).</p></div></div>
+                <!-- Lesson 4: Secure Device Disposal -->
+                <div class="lesson-section"><h3>📘 Lesson 4: Secure Device Disposal</h3><div class="content-card"><p>Before selling or recycling a device, factory reset it. For computers, use a program to wipe the drive so data can't be recovered.</p></div></div>
+                <!-- FINAL TEST for Device -->
+                <div class="final-test-section" id="device-test">
+                    <h3>📝 Module Test: Device Security</h3>
+                    <div id="device-test-questions">
+                        <div class="test-question"><p>1. Why are software updates important?</p>
+                            <label class="test-option"><input type="radio" name="dev-q1" value="wrong"> They add new emojis</label>
+                            <label class="test-option"><input type="radio" name="dev-q1" value="correct"> They fix security vulnerabilities</label>
+                            <label class="test-option"><input type="radio" name="dev-q1" value="wrong"> They make your computer slower</label>
+                        </div>
+                        <div class="test-question"><p>2. What is the "3-2-1" rule for?</p>
+                            <label class="test-option"><input type="radio" name="dev-q2" value="wrong"> Password creation</label>
+                            <label class="test-option"><input type="radio" name="dev-q2" value="correct"> Backing up data</label>
+                            <label class="test-option"><input type="radio" name="dev-q2" value="wrong"> Internet browsing</label>
+                        </div>
+                        <div class="test-question"><p>3. Should you have antivirus software on your computer?</p>
+                            <label class="test-option"><input type="radio" name="dev-q3" value="correct"> Yes, it helps protect against malware</label>
+                            <label class="test-option"><input type="radio" name="dev-q3" value="wrong"> No, it's not necessary</label>
+                            <label class="test-option"><input type="radio" name="dev-q3" value="wrong"> Only if you pay for it</label>
+                        </div>
+                        <div class="test-question"><p>4. What should you do before selling your old phone?</p>
+                            <label class="test-option"><input type="radio" name="dev-q4" value="wrong"> Remove the SIM card only</label>
+                            <label class="test-option"><input type="radio" name="dev-q4" value="correct"> Factory reset it to erase all data</label>
+                            <label class="test-option"><input type="radio" name="dev-q4" value="wrong"> Take a photo of the screen</label>
+                        </div>
+                        <div class="test-question"><p>5. Where can you check for software updates on a Windows computer?</p>
+                            <label class="test-option"><input type="radio" name="dev-q5" value="wrong"> In the recycle bin</label>
+                            <label class="test-option"><input type="radio" name="dev-q5" value="correct"> In Windows Update settings</label>
+                            <label class="test-option"><input type="radio" name="dev-q5" value="wrong"> On the desktop</label>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="background: white; color: var(--primary); margin-top: 1.5rem;" onclick="scoreTest('device')">Submit Test</button>
+                    <div id="device-test-score" class="test-score"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div><h5>CyberWise</h5><p>Empowering older adults through accessible, research-driven cybersecurity education.</p></div>
+            <div><h5>Learning Topics</h5><ul><li><a href="#">Phishing Awareness</a></li><li><a href="#">Password Security</a></li><li><a href="#">Safe Browsing</a></li><li><a href="#">Privacy Protection</a></li></ul></div>
+            <div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="modules.html">Modules</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+            <div><h5>Contact</h5><p>Email: <a href="mailto:info@cyberwise-project.com">info@cyberwise-project.com</a></p><p>For research and educational purposes.</p></div>
+        </div>
+        <div class="footer-bottom">© 2026 CyberWise | MSc Cybersecurity Education Project | University Name</div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Text resize functionality
+        function resizeText(action) {
+            const html = document.querySelector('html');
+            const currentSize = parseFloat(window.getComputedStyle(html).fontSize);
+            if (action === 'increase' && currentSize < 24) html.style.fontSize = (currentSize + 2) + 'px';
+            else if (action === 'decrease' && currentSize > 12) html.style.fontSize = (currentSize - 2) + 'px';
+            else if (action === 'reset') html.style.fontSize = '16px';
+        }
+
+        // Module filtering
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.module-card').forEach(module => {
+                    if (filter === 'all') module.style.display = 'block';
+                    else if (filter === 'in-progress' || filter === 'completed') {
+                        module.style.display = (module.dataset.status === filter) ? 'block' : 'none';
+                    } else {
+                        module.style.display = (module.dataset.level === filter) ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+
+        // Module modal handling
+        function openModule(moduleName, isReview = false) {
+            document.querySelectorAll('[id$="Module"]').forEach(mod => mod.classList.add('hidden'));
+            const moduleElement = document.getElementById(moduleName + 'Module');
+            if (moduleElement) moduleElement.classList.remove('hidden');
+            document.getElementById('moduleModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModule() {
+            document.getElementById('moduleModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('moduleModal')) closeModule();
+        });
+
+        // Quiz answer checking (for inline quizzes)
+        function checkQuizAnswer(questionId) {
+            const question = document.getElementById(questionId)?.closest('.quiz-question');
+            if (!question) return;
+            const selectedOption = question.querySelector('input[type="radio"]:checked');
+            const feedbackDiv = document.getElementById(questionId + '-feedback');
+            if (!selectedOption) {
+                feedbackDiv.textContent = 'Please select an answer first.';
+                feedbackDiv.className = 'quiz-feedback show feedback-incorrect';
+                return;
+            }
+            const option = selectedOption.closest('.quiz-option');
+            const isCorrect = option.hasAttribute('data-correct');
+            question.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('correct', 'incorrect'));
+            if (isCorrect) {
+                option.classList.add('correct');
+                feedbackDiv.textContent = '✓ Correct! Well done.';
+                feedbackDiv.className = 'quiz-feedback show feedback-correct';
+            } else {
+                option.classList.add('incorrect');
+                feedbackDiv.textContent = '✗ Not quite. Try again!';
+                feedbackDiv.className = 'quiz-feedback show feedback-incorrect';
+            }
+        }
+
+        // --- NEW: Scored Test Function with 60% Pass Mark ---
+        function scoreTest(moduleId) {
+            const testContainer = document.getElementById(moduleId + '-test-questions');
+            if (!testContainer) return;
+            
+            const questions = testContainer.querySelectorAll('.test-question');
+            let score = 0;
+            let totalAnswered = 0;
+            
+            questions.forEach(q => {
+                const selected = q.querySelector('input[type="radio"]:checked');
+                if (selected) {
+                    totalAnswered++;
+                    if (selected.value === 'correct') score++;
+                }
+            });
+            
+            if (totalAnswered < questions.length) {
+                alert(`Please answer all ${questions.length} questions before submitting.`);
+                return;
+            }
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            const passed = percentage >= 60; // 60% pass mark (3 out of 5)
+            
+            // Display score
+            const scoreDiv = document.getElementById(moduleId + '-test-score');
+            const passDiv = document.getElementById(moduleId + '-test-pass');
+            if (scoreDiv) {
+                scoreDiv.innerHTML = `You scored ${score} out of ${questions.length} (${percentage}%)`;
+                if (passed) {
+                    scoreDiv.style.color = 'var(--success)';
+                    if (passDiv) passDiv.innerHTML = '✅ PASSED! You have successfully completed this module.';
+                } else {
+                    scoreDiv.style.color = 'var(--error)';
+                    if (passDiv) passDiv.innerHTML = '❌ Score below 60%. Please review the lessons and try again.';
+                }
+            }
+            
+            // If passed, complete the module
+            if (passed) {
+                completeModule(moduleId);
+            }
+        }
+
+        // Complete module function - updates card, badge, progress bar
+        function completeModule(moduleName) {
+            const moduleCard = document.querySelector(`.module-card[data-module-id="${moduleName}"]`);
+            if (moduleCard && moduleCard.dataset.status !== 'completed') {
+                moduleCard.classList.remove('in-progress');
+                moduleCard.classList.add('completed');
+                moduleCard.dataset.status = 'completed';
+                
+                // Update badge
+                const badge = moduleCard.querySelector('.module-badge');
+                if (badge) {
+                    badge.textContent = 'Completed';
+                    badge.className = 'module-badge completed';
+                }
+                
+                // Update progress to 100%
+                const progressFill = moduleCard.querySelector('.module-progress-fill');
+                const progressText = moduleCard.querySelector('.module-progress-text span:last-child');
+                if (progressFill) progressFill.style.width = '100%';
+                if (progressText) progressText.textContent = '100%';
+                
+                // Update all topic checkmarks to completed
+                const topics = moduleCard.querySelectorAll('.topic-uncheck');
+                topics.forEach(topic => {
+                    topic.textContent = '✓';
+                    topic.className = 'topic-check';
+                });
+                
+                // Update overall progress
+                updateOverallProgress();
+                
+                // Show congratulations
+                alert('🎉 Congratulations! You\'ve passed the test and completed this module. Your achievement has been saved.');
+            }
+        }
+
+        // Reset module progress
+        function resetModule(moduleName) {
+            if (confirm('Are you sure you want to reset your progress in this module?')) {
+                const moduleCard = document.querySelector(`.module-card[data-module-id="${moduleName}"]`);
+                if (moduleCard) {
+                    moduleCard.classList.remove('completed', 'in-progress');
+                    moduleCard.dataset.status = 'not-started';
+                    const badge = moduleCard.querySelector('.module-badge');
+                    if (badge) {
+                        badge.textContent = 'Not Started';
+                        badge.className = 'module-badge';
+                    }
+                    const progressFill = moduleCard.querySelector('.module-progress-fill');
+                    const progressText = moduleCard.querySelector('.module-progress-text span:last-child');
+                    if (progressFill) progressFill.style.width = '0%';
+                    if (progressText) progressText.textContent = '0%';
+                    
+                    // Reset topics
+                    const topics = moduleCard.querySelectorAll('.topic-check');
+                    topics.forEach(topic => {
+                        topic.textContent = '○';
+                        topic.className = 'topic-uncheck';
+                    });
+                    
+                    updateOverallProgress();
+                }
+            }
+        }
+
+        // Update overall progress statistics
+        function updateOverallProgress() {
+            const modules = document.querySelectorAll('.module-card');
+            const total = modules.length;
+            const completed = Array.from(modules).filter(m => m.dataset.status === 'completed').length;
+            const inProgress = Array.from(modules).filter(m => m.dataset.status === 'in-progress').length;
+            
+            document.getElementById('completedModules').textContent = completed;
+            document.getElementById('inProgressModules').textContent = inProgress;
+            document.getElementById('totalLessons').textContent = completed * 4; // Rough estimate
+            
+            // Update achievements
+            const achievements = document.querySelectorAll('.achievement-card');
+            if (completed >= 1) achievements[0].classList.add('unlocked');
+            if (completed >= 2) achievements[1].classList.add('unlocked');
+            if (completed >= 3) achievements[2].classList.add('unlocked');
+            if (completed >= 6) achievements[3].classList.add('unlocked');
+            
+            document.getElementById('achievementsCount').textContent = completed >= 1 ? completed : 0;
+            
+            const overallPercent = total > 0 ? Math.round((completed / total) * 100) : 0;
+            document.getElementById('overallProgressFill').style.width = overallPercent + '%';
+            document.getElementById('overallProgressPercent').textContent = overallPercent + '%';
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            const modules = document.querySelectorAll('.module-card');
+            const progress = {};
+            modules.forEach(module => {
+                const title = module.querySelector('h4')?.textContent;
+                if (title) {
+                    progress[title] = {
+                        status: module.dataset.status,
+                        progress: module.querySelector('.module-progress-fill')?.style.width || '0%'
+                    };
+                }
+            });
+            localStorage.setItem('cyberwise_module_progress', JSON.stringify(progress));
+        }
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('cyberwise_module_progress');
+            if (saved) {
+                try {
+                    const progress = JSON.parse(saved);
+                    console.log('Loaded saved progress', progress);
+                    // Apply saved progress to modules (would need mapping)
+                } catch (e) {
+                    console.error('Error loading progress', e);
+                }
+            }
+        }
+
+        // Initialize page
+        window.addEventListener('load', function() {
+            loadProgress();
+            updateOverallProgress();
+            window.addEventListener('beforeunload', saveProgress);
+        });
+
+        // Keyboard navigation enhancement
+        document.querySelectorAll('button, a, [tabindex="0"]').forEach(element => {
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        // Checklist functionality
+        document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const section = this.closest('.lesson-section');
+                const checkboxes = section.querySelectorAll('.checklist input[type="checkbox"]');
+                const checked = section.querySelectorAll('.checklist input[type="checkbox"]:checked');
+                if (checkboxes.length === checked.length) {
+                    const message = document.createElement('div');
+                    message.className = 'success-box';
+                    message.style.marginTop = '1rem';
+                    message.innerHTML = '<p>✅ Great! You\'ve reviewed all the red flags. Remember these when checking emails.</p>';
+                    const existing = section.querySelector('.checklist + .success-box');
+                    if (existing) existing.remove();
+                    section.querySelector('.checklist').after(message);
+                }
+            });
+        });
+
+        // Add visually hidden class for screen readers
+        const style = document.createElement('style');
+        style.textContent = `.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }`;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

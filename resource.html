@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources | CyberWise - Cybersecurity for Older Adults</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #0f172a;
+    --secondary: #1e293b;
+    --accent: #2563eb;
+    --accent-light: #3b82f6;
+    --accent-soft: #dbeafe;
+    --light: #f8fafc;
+    --gray: #64748b;
+    --success: #10b981;
+    --success-light: #d1fae5;
+    --warning: #f59e0b;
+    --warning-light: #fed7aa;
+    --error: #ef4444;
+    --error-light: #fee2e2;
+    --info: #3b82f6;
+    --info-light: #dbeafe;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--primary);
+    line-height: 1.6;
+}
+
+/* Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Focus states */
+:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* NAVIGATION */
+nav {
+    background: white;
+    padding: 1.2rem 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+nav h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 500;
+    transition: 0.3s ease;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+nav a.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+}
+
+/* Accessibility controls */
+.accessibility-bar {
+    background: var(--primary);
+    padding: 0.5rem 8%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.text-resize {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    min-height: 38px;
+    transition: 0.3s ease;
+}
+
+.text-resize:hover {
+    background: white;
+    color: var(--primary);
+}
+
+/* PAGE HEADER */
+.page-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 3rem 8%;
+    text-align: center;
+}
+
+.page-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* RESOURCE SEARCH */
+.search-section {
+    background: white;
+    padding: 2rem 8%;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.search-input {
+    flex: 1;
+    padding: 1rem 1.2rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.search-btn {
+    padding: 1rem 2rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    min-height: 52px;
+}
+
+.search-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37,99,235,0.2);
+}
+
+/* CATEGORY FILTERS */
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 8% 0;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #e2e8f0;
+    background: white;
+    color: var(--primary);
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+    min-height: 44px;
+}
+
+.category-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.category-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+/* RESOURCES SECTION */
+.resources-section {
+    padding: 3rem 8% 5rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h3 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    color: var(--gray);
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+/* FEATURED RESOURCES */
+.featured-resources {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.featured-card {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.featured-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+}
+
+.featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.featured-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.featured-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.featured-card p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.featured-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.featured-link:hover {
+    background: rgba(255,255,255,0.2);
+    gap: 0.8rem;
+}
+
+/* RESOURCES GRID */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.resource-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(37,99,235,0.15);
+    border-color: var(--accent-light);
+}
+
+.resource-type {
+    padding: 0.5rem 1rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    border-radius: 4px;
+    margin: 1.5rem 1.5rem 0;
+}
+
+.resource-type.article {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.resource-type.video {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.resource-type.guide {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.resource-type.tool {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.resource-content {
+    padding: 1rem 1.5rem 1.5rem;
+    flex: 1;
+}
+
+.resource-content h4 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.resource-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.resource-description {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.resource-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    background: var(--light);
+    color: var(--gray);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.resource-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e2e8f0;
+    padding: 1rem 1.5rem;
+}
+
+.resource-date {
+    color: var(--gray);
+    font-size: 0.85rem;
+}
+
+.resource-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.resource-link:hover {
+    text-decoration: underline;
+}
+
+/* DOWNLOADABLE GUIDES SECTION */
+.guides-section {
+    background: var(--light);
+    padding: 4rem 8%;
+    border-radius: 30px 30px 0 0;
+}
+
+.guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.guide-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px rgba(37,99,235,0.1);
+}
+
+.guide-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.guide-card h4 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.guide-card p {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.guide-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.guide-btn:hover {
+    background: #1d4ed8;
+    gap: 0.8rem;
+}
+
+/* USEFUL LINKS SECTION */
+.links-section {
+    padding: 4rem 8%;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.link-category h4 {
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--accent-soft);
+    padding-bottom: 0.5rem;
+}
+
+.link-list {
+    list-style: none;
+}
+
+.link-list li {
+    margin-bottom: 1rem;
+}
+
+.link-list a {
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.link-list a:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding-left: 1rem;
+}
+
+.link-icon {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+/* GLOSSARY SECTION */
+.glossary-section {
+    background: white;
+    padding: 4rem 8%;
+    border-top: 1px solid #e2e8f0;
+}
+
+.glossary-search {
+    max-width: 500px;
+    margin: 2rem auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.glossary-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.glossary-item {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.glossary-term {
+    min-width: 150px;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.glossary-def {
+    color: var(--gray);
+}
+
+/* NEWSLETTER SECTION */
+.newsletter-section {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 4rem 8%;
+    text-align: center;
+}
+
+.newsletter-section h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.newsletter-section p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+}
+
+.newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 1rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.newsletter-input:focus {
+    outline: 3px solid var(--accent-light);
+}
+
+.newsletter-btn {
+    padding: 1rem 2rem;
+    background: white;
+    color: var(--primary);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    min-height: 52px;
+}
+
+.newsletter-btn:hover {
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+footer {
+    background: var(--primary);
+    color: #cbd5e1;
+    padding: 3rem 8%;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+footer h5 {
+    margin-bottom: 1rem;
+    color: white;
+    font-size: 1.1rem;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+footer a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+footer p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.footer-bottom {
+    margin-top: 2rem;
+    border-top: 1px solid #334155;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--gray);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: var(--light);
+    color: var(--error);
+}
+
+.modal-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.modal h3 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.modal p {
+    text-align: center;
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 5%;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .accessibility-bar {
+        justify-content: center;
+    }
+
+    .page-header h2 {
+        font-size: 2rem;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    .category-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .category-btn {
+        width: 100%;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-btn {
+        width: 100%;
+    }
+
+    .glossary-item {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .glossary-term {
+        min-width: auto;
+    }
+
+    .modal-content {
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .guides-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .links-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-resources {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* PRINT STYLES */
+@media print {
+    .accessibility-bar,
+    .search-section,
+    .category-filters,
+    .newsletter-section,
+    .guide-btn,
+    .modal-close,
+    footer {
+        display: none;
+    }
+}
+
+/* UTILITY CLASSES */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+</style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Accessibility Controls -->
+    <div class="accessibility-bar">
+        <button class="text-resize" onclick="resizeText('increase')" aria-label="Increase text size">A+</button>
+        <button class="text-resize" onclick="resizeText('decrease')" aria-label="Decrease text size">A-</button>
+        <button class="text-resize" onclick="resizeText('reset')" aria-label="Reset text size">Reset</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+        <h1>CyberWise</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="modules.html">Modules</a></li>
+            <li><a href="resources.html" class="active" aria-current="page">Resources</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h2>Learning Resources</h2>
+            <p>
+                Explore our collection of guides, articles, videos, and tools to help you stay safe online. 
+                All resources are carefully selected for clarity and accessibility.
+            </p>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" id="resourceSearch" placeholder="Search resources..." aria-label="Search resources">
+                <button class="search-btn" onclick="searchResources()">🔍 Search</button>
+            </div>
+        </section>
+
+        <!-- Category Filters -->
+        <div class="category-filters">
+            <button class="category-btn active" data-category="all">All Resources</button>
+            <button class="category-btn" data-category="article">Articles</button>
+            <button class="category-btn" data-category="video">Videos</button>
+            <button class="category-btn" data-category="guide">Guides</button>
+            <button class="category-btn" data-category="tool">Tools</button>
+            <button class="category-btn" data-category="scams">Scam Alerts</button>
+        </div>
+
+        <!-- Resources Section -->
+        <section class="resources-section">
+            <!-- Featured Resources -->
+            <div class="featured-resources">
+                <div class="featured-card">
+                    <span class="featured-badge">New</span>
+                    <div class="featured-icon">🛡️</div>
+                    <h4>Emergency Scam Guide</h4>
+                    <p>What to do if you think you've been scammed - a step-by-step action plan.</p>
+                    <a href="#" class="featured-link" onclick="openModal('scam-guide')">Read Now →</a>
+                </div>
+
+                <div class="featured-card">
+                    <span class="featured-badge">Popular</span>
+                    <div class="featured-icon">📹</div>
+                    <h4>Video: Spotting Fake Emails</h4>
+                    <p>A 5-minute video guide showing real examples of phishing emails.</p>
+                    <a href="#" class="featured-link" onclick="openModal('video-guide')">Watch Now →</a>
+                </div>
+
+                <div class="featured-card">
+                    <span class="featured-badge">Download</span>
+                    <div class="featured-icon">📘</div>
+                    <h4>CyberWise Handbook</h4>
+                    <p>Our complete guide to online safety - free PDF download.</p>
+                    <a href="#" class="featured-link" onclick="openModal('handbook')">Download →</a>
+                </div>
+            </div>
+
+            <!-- Resources Grid -->
+            <div class="resources-grid" id="resourcesGrid">
+                <!-- Article 1 -->
+                <div class="resource-card" data-category="article" data-tags="phishing,email,scams">
+                    <span class="resource-type article">📄 Article</span>
+                    <div class="resource-content">
+                        <h4>Complete Guide to Phishing Scams</h4>
+                        <div class="resource-meta">
+                            <span>📅 5 min read</span>
+                            <span>📊 Beginner</span>
+                        </div>
+                        <p class="resource-description">
+                            Learn how to identify phishing emails, text messages, and fake websites. 
+                            Includes real-world examples and screenshots.
+                        </p>
+                        <div class="resource-tags">
+                            <span class="tag">phishing</span>
+                            <span class="tag">email</span>
+                            <span class="tag">scams</span>
+                        </div>
+                    </div>
+                    <div class="resource-footer">
+                        <span class="resource-date">Updated: Feb 2026</span>
+                        <a href="#" class="resource-link" onclick="openModal('phishing-guide')">Read More →</a>
+                    </div>
+                </div>
+
+                <!-- Video 1 -->
+                <div class="resource-card" data-category="video" data-tags="passwords,2fa,tutorial">
+                    <span class="resource-type video">🎥 Video</span>
+                    <div class="resource-content">
+                        <h4>How to Create Strong Passwords</h4>
+                        <div class="resource-meta">
+                            <span>⏱️ 8 min</span>
+                            <span>📊 Beginner</span>
+                        </div>
+                        <p class="resource-description">
+                            Video tutorial showing how to create memorable but secure passwords 
+                            and set up two-factor authentication.
+                        </p>
+                        <div class="resource-tags">
+                            <span class="tag">passwords</span>
+                            <span class="tag">2FA</span>
+                            <span class="tag">tutorial</span>
+                        </div>
+                    </div>
+                    <div class="resource-footer">
+                        <span class="resource-date">Added: Jan 2026</span>
+                        <a href="#" class="resource-link" onclick="openModal('password-video')">Watch →</a>
+                    </div>
+                </div>
+
+                <!-- Guide 1 -->
+                <div class="resource-card" data-category="guide" data-tags="banking,shopping,security">
+                    <span class="resource-type guide">📘 Guide</span>
+                    <div class="resource-content">
+                        <h4>Safe Online Banking & Shopping</h4>
+                        <div class="resource-meta">
+                            <span>📄 12 pages</span>
+                            <span>📊 Intermediate</span>
+                        </div>
+                        <p class="resource-description">
+                            A comprehensive guide to protecting your money online, including 
+                            how to spot fake shops and secure payment methods.
+                        </p>
+                        <div class="resource-tags">
+                            <span class="tag">banking</span>
+                            <span class="tag">shopping</span>
+                            <span class="tag">security</span>
+                        </div>
+                    </div>
+                    <div class="resource-footer">
+                        <span class="resource-date">Updated: Dec 2025</span>
+                        <a href="#" class="resource-link" onclick="openModal('banking-guide')">Download PDF →</a>
+                    </div>
+                </div>
+
+                <!-- Tool 1 -->
+                <div class="resource-card" data-category="tool" data-tags="password,manager">
+                    <span class="resource-type tool">🛠️ Tool</span>
+                    <div class="resource-content">
+                        <h4>Password Manager Comparison</h4>
+                        <div class="resource-meta">
+                            <span>📊 Beginner</span>
+                        </div>
+                        <p class="resource-description">
+                            Compare the best password managers for ease of use, security, and cost. 
+                            Includes step-by-step setup guides.
+                        </p>
+                        <div class="resource-tags">
+                            <span class="tag">password</span>
+                            <span class="tag">manager</span>
+                            <span class="tag">comparison</span>
+                        </div>
+                    </div>
+                    <div class="resource-footer">
+                        <span class="resource-date">Updated: Feb 2026</span>
+                        <a href="#" class="resource-link" onclick="openModal('password-tools')">View Tools →</a>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="resource-card" data-category="article" data-tags="social-media,privacy">
+                    <span class="resource-type article">📄 Article</span>
+                    <div class="resource-content">
+                        <h4>Social Media Privacy Settings</h4>
+                        <div class="resource-meta">
+                            <span>📅 7 min read</span>
+                            <span>📊 Beginner</span>
+                        </div>
+                        <p class="resource-description">
+                            Step-by-step instructions for Facebook, Twitter, and Instagram privacy 
+                            settings. Control who sees your posts.
+                        </p>
+                        <div class="resource-tags">
+                            <span class="tag">social media</span>
+                            <span class="tag">privacy</span>
+                            <span class="tag">settings</span>
+                        </div>
+                    </div>
+                    <div class="resource-footer">
+                        <span class="resource-date">Updated: Jan 2026</span>
+                        <a href="#" class="resource-link" onclick="openModal('social-privacy')">Read More →</a>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="resource-card" data-category="video" data-tags="scams,phone">
+                    <span class="resource-type video">🎥 Video</span>
+                    <div class="resource-content">
+                        <h4>Phone Scams: What to Watch For</h4>
+                        <div class="resource-meta">
+                            <span>⏱️ 6 min</span>
+                            <span>📊 Beginner</span>
+                        </div>
+                        <p class="resource-description">
+                            Real recordings of scam calls and how to respond. Learn the phrases 
+                            scammers use and how to hang up safely.
+                        </p>
+                        <div class="resource-tags">
+                            <span class="tag">scams</span>
+                            <span class="tag">phone</span>
+                            <span class="tag">awareness</span>
+                        </div>
+                    </div>
+                    <div class="resource-footer">
+                        <span class="resource-date">Added: Feb 2026</span>
+                        <a href="#" class="resource-link" onclick="openModal('phone-scams')">Watch →</a>
+                    </div>
+                </div>
+
+                <!-- Guide 2 -->
+                <div class="resource-card" data-category="guide" data-tags="device,updates">
+                    <span class="resource-type guide">📘 Guide</span>
+                    <div class="resource-content">
+                        <h4>Keeping Your Devices Updated</h4>
+                        <div class="resource-meta">
+                            <span>📄 8 pages</span>
+                            <span>📊 Beginner</span>
+                        </div>
+                        <p class="resource-description">
+                            Why updates matter and how to set up automatic updates on Windows, 
+                            Mac, iPhone, and Android devices.
+                        </p>
+                        <div class="resource-tags">
+                            <span class="tag">device</span>
+                            <span class="tag">updates</span>
+                            <span class="tag">security</span>
+                        </div>
+                    </div>
+                    <div class="resource-footer">
+                        <span class="resource-date">Updated: Jan 2026</span>
+                        <a href="#" class="resource-link" onclick="openModal('updates-guide')">Download PDF →</a>
+                    </div>
+                </div>
+
+                <!-- Scam Alert -->
+                <div class="resource-card" data-category="scams" data-tags="alert,current">
+                    <span class="resource-type article">🚨 Scam Alert</span>
+                    <div class="resource-content">
+                        <h4>⚠️ Current: Council Tax Rebate Scam</h4>
+                        <div class="resource-meta">
+                            <span>📅 Updated today</span>
+                        </div>
+                        <p class="resource-description">
+                            Fake emails claiming you're owed a council tax rebate are circulating. 
+                            Do not click links - here's what to look for.
+                        </p>
+                        <div class="resource-tags">
+                            <span class="tag">alert</span>
+                            <span class="tag">current</span>
+                            <span class="tag">urgent</span>
+                        </div>
+                    </div>
+                    <div class="resource-footer">
+                        <span class="resource-date">Posted: Today</span>
+                        <a href="#" class="resource-link" onclick="openModal('scam-alert')">View Alert →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-4">
+                <button class="btn-secondary" onclick="loadMoreResources()" style="padding: 1rem 3rem;">Load More Resources</button>
+            </div>
+        </section>
+
+        <!-- Downloadable Guides Section -->
+        <section class="guides-section">
+            <div class="section-header">
+                <h3>📥 Downloadable Guides</h3>
+                <p>Print-friendly guides you can keep for reference</p>
+            </div>
+
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <div class="guide-icon">📘</div>
+                    <h4>CyberWise Quick Reference</h4>
+                    <p>A 2-page summary of key online safety tips. Perfect to keep by your computer.</p>
+                    <a href="#" class="guide-btn" onclick="openModal('quick-ref')">📥 Download PDF</a>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon">📗</div>
+                    <h4>Password Tracker (Printable)</h4>
+                    <p>A secure, printable form to keep track of your accounts - keep in a safe place.</p>
+                    <a href="#" class="guide-btn" onclick="openModal('password-tracker')">📥 Download PDF</a>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon">📕</div>
+                    <h4>Scam Checklist</h4>
+                    <p>Use this checklist when you receive suspicious calls, emails, or messages.</p>
+                    <a href="#" class="guide-btn" onclick="openModal('scam-checklist')">📥 Download PDF</a>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon">📙</div>
+                    <h4>Emergency Action Plan</h4>
+                    <p>What to do if you think you've been scammed - step-by-step instructions.</p>
+                    <a href="#" class="guide-btn" onclick="openModal('emergency-plan')">📥 Download PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Useful Links Section -->
+        <section class="links-section">
+            <div class="section-header">
+                <h3>🔗 Useful External Links</h3>
+                <p>Trusted organisations that can help with online safety</p>
+            </div>
+
+            <div class="links-grid">
+                <div class="link-category">
+                    <h4>Reporting Scams</h4>
+                    <ul class="link-list">
+                        <li><a href="#" onclick="alert('External link: Action Fraud UK'); return false;"><span class="link-icon">📞</span> Action Fraud (UK)</a></li>
+                        <li><a href="#" onclick="alert('External link: Citizens Advice'); return false;"><span class="link-icon">📋</span> Citizens Advice Scams</a></li>
+                        <li><a href="#" onclick="alert('External link: Which?'); return false;"><span class="link-icon">🛡️</span> Which? Scam Alerts</a></li>
+                    </ul>
+                </div>
+
+                <div class="link-category">
+                    <h4>Banking & Finance</h4>
+                    <ul class="link-list">
+                        <li><a href="#" onclick="alert('External link: UK Finance'); return false;"><span class="link-icon">🏦</span> UK Finance Security</a></li>
+                        <li><a href="#" onclick="alert('External link: Take Five'); return false;"><span class="link-icon">⏸️</span> Take Five Stop Scams</a></li>
+                        <li><a href="#" onclick="alert('External link: CIFAS'); return false;"><span class="link-icon">🔒</span> CIFAS Fraud Prevention</a></li>
+                    </ul>
+                </div>
+
+                <div class="link-category">
+                    <h4>Technology Help</h4>
+                    <ul class="link-list">
+                        <li><a href="#" onclick="alert('External link: Age UK'); return false;"><span class="link-icon">👵</span> Age UK Tech Support</a></li>
+                        <li><a href="#" onclick="alert('External link: Digital Unite'); return false;"><span class="link-icon">💻</span> Digital Unite Guides</a></li>
+                        <li><a href="#" onclick="alert('External link: AbilityNet'); return false;"><span class="link-icon">♿</span> AbilityNet Accessibility</a></li>
+                    </ul>
+                </div>
+
+                <div class="link-category">
+                    <h4>Government Resources</h4>
+                    <ul class="link-list">
+                        <li><a href="#" onclick="alert('External link: NCSC'); return false;"><span class="link-icon">🇬🇧</span> NCSC Cyber Aware</a></li>
+                        <li><a href="#" onclick="alert('External link: ICO'); return false;"><span class="link-icon">📊</span> ICO Data Protection</a></li>
+                        <li><a href="#" onclick="alert('External link: Get Safe Online'); return false;"><span class="link-icon">🌐</span> Get Safe Online</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Glossary Section -->
+        <section class="glossary-section">
+            <div class="section-header">
+                <h3>📖 Cybersecurity Glossary</h3>
+                <p>Simple explanations of common terms</p>
+            </div>
+
+            <div class="glossary-search">
+                <input type="text" class="search-input" id="glossarySearch" placeholder="Search glossary..." aria-label="Search glossary">
+                <button class="search-btn" onclick="searchGlossary()">🔍 Search</button>
+            </div>
+
+            <div class="glossary-list" id="glossaryList">
+                <div class="glossary-item">
+                    <span class="glossary-term">2FA / Two-Factor Authentication</span>
+                    <span class="glossary-def">An extra layer of security that requires a second step (like a text code) to log in, even if someone has your password.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Antivirus</span>
+                    <span class="glossary-def">Software that protects your computer by finding and removing malicious programs.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Backup</span>
+                    <span class="glossary-def">A copy of your important files stored somewhere safe, so you can recover them if your device is lost or damaged.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Encryption</span>
+                    <span class="glossary-def">Scrambling information so it can only be read by someone with the key to unscramble it.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">HTTPS</span>
+                    <span class="glossary-def">The 's' stands for secure. It means your connection to the website is encrypted. Look for the padlock icon.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Malware</span>
+                    <span class="glossary-def">Malicious software designed to harm your device or steal information (viruses, spyware, ransomware).</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Phishing</span>
+                    <span class="glossary-def">Fake emails, texts, or websites that trick you into giving away personal information.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Ransomware</span>
+                    <span class="glossary-def">A type of malware that locks your files and demands payment to unlock them.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">VPN (Virtual Private Network)</span>
+                    <span class="glossary-def">A service that creates a secure, encrypted connection over the internet, especially useful on public Wi-Fi.</span>
+                </div>
+                <div class="glossary-item">
+                    <span class="glossary-term">Wi-Fi</span>
+                    <span class="glossary-def">A wireless network that lets you connect to the internet without cables.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <h3>📧 Stay Updated</h3>
+            <p>Subscribe to our newsletter for monthly tips, new resources, and scam alerts.</p>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" aria-label="Email for newsletter">
+                <button class="newsletter-btn" onclick="alert('Thank you for subscribing! (Demo - no emails sent)')">Subscribe</button>
+            </div>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.7;">We'll never share your email. Unsubscribe anytime.</p>
+        </section>
+    </main>
+
+    <!-- Resource Modal -->
+    <div id="resourceModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
+            <div id="modalContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h5>CyberWise</h5>
+                <p>Empowering older adults through accessible, research-driven cybersecurity education.</p>
+            </div>
+
+            <div>
+                <h5>Learning Topics</h5>
+                <ul>
+                    <li><a href="modules.html#phishing">Phishing Awareness</a></li>
+                    <li><a href="modules.html#passwords">Password Security</a></li>
+                    <li><a href="modules.html#browsing">Safe Browsing</a></li>
+                    <li><a href="modules.html#social">Privacy Protection</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="modules.html">Modules</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Contact</h5>
+                <p>Email: <a href="mailto:info@cyberwise-project.com">info@cyberwise-project.com</a></p>
+                <p>Phone: <a href="tel:+441234567890">01234 567890</a></p>
+                <p>For research and educational purposes.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 CyberWise | MSc Cybersecurity Education Project | University Name
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Text resize functionality
+        function resizeText(action) {
+            const html = document.querySelector('html');
+            const currentSize = parseFloat(window.getComputedStyle(html).fontSize);
+            
+            if (action === 'increase' && currentSize < 24) {
+                html.style.fontSize = (currentSize + 2) + 'px';
+            } else if (action === 'decrease' && currentSize > 12) {
+                html.style.fontSize = (currentSize - 2) + 'px';
+            } else if (action === 'reset') {
+                html.style.fontSize = '16px';
+            }
+        }
+
+        // Category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const resources = document.querySelectorAll('.resource-card');
+                
+                resources.forEach(resource => {
+                    if (category === 'all') {
+                        resource.style.display = 'block';
+                    } else {
+                        if (resource.dataset.category === category) {
+                            resource.style.display = 'block';
+                        } else {
+                            resource.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Search resources
+        function searchResources() {
+            const searchTerm = document.getElementById('resourceSearch').value.toLowerCase();
+            const resources = document.querySelectorAll('.resource-card');
+            
+            resources.forEach(resource => {
+                const title = resource.querySelector('h4').textContent.toLowerCase();
+                const desc = resource.querySelector('.resource-description').textContent.toLowerCase();
+                const tags = Array.from(resource.querySelectorAll('.tag')).map(t => t.textContent.toLowerCase()).join(' ');
+                
+                if (title.includes(searchTerm) || desc.includes(searchTerm) || tags.includes(searchTerm)) {
+                    resource.style.display = 'block';
+                } else {
+                    resource.style.display = 'none';
+                }
+            });
+        }
+
+        // Search glossary
+        function searchGlossary() {
+            const searchTerm = document.getElementById('glossarySearch').value.toLowerCase();
+            const items = document.querySelectorAll('.glossary-item');
+            
+            items.forEach(item => {
+                const term = item.querySelector('.glossary-term').textContent.toLowerCase();
+                const def = item.querySelector('.glossary-def').textContent.toLowerCase();
+                
+                if (term.includes(searchTerm) || def.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Enter key for search
+        document.getElementById('resourceSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchResources();
+        });
+
+        document.getElementById('glossarySearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchGlossary();
+        });
+
+        // Modal handling
+        function openModal(resourceId) {
+            const modal = document.getElementById('resourceModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            // Different content based on resource
+            let content = '';
+            
+            switch(resourceId) {
+                case 'scam-guide':
+                    content = `
+                        <div class="modal-icon">🛡️</div>
+                        <h3>Emergency Scam Guide</h3>
+                        <p>If you think you've been scammed:</p>
+                        <ol style="text-align: left; margin: 1rem 0; padding-left: 1.5rem; color: var(--gray);">
+                            <li><strong>Stop all communication</strong> with the scammer immediately.</li>
+                            <li><strong>Contact your bank</strong> if you've shared financial details or made a payment.</li>
+                            <li><strong>Report the scam</strong> to Action Fraud on 0300 123 2040.</li>
+                            <li><strong>Change your passwords</strong> for any affected accounts.</li>
+                            <li><strong>Tell family or friends</strong> - they can help and support you.</li>
+                        </ol>
+                        <p style="margin-top: 1rem;">Remember: You are not alone. Scammers are professionals, and anyone can be targeted.</p>
+                    `;
+                    break;
+                case 'phishing-guide':
+                    content = `
+                        <div class="modal-icon">📄</div>
+                        <h3>Complete Guide to Phishing Scams</h3>
+                        <p style="text-align: left;">This comprehensive guide covers:</p>
+                        <ul style="text-align: left; margin: 1rem 0; padding-left: 1.5rem; color: var(--gray);">
+                            <li>What phishing looks like (with screenshots)</li>
+                            <li>Email, text, and phone call scams</li>
+                            <li>How to verify if a message is genuine</li>
+                            <li>What to do if you've clicked a suspicious link</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">In a real website, this would be a full article.</p>
+                    `;
+                    break;
+                case 'password-video':
+                    content = `
+                        <div class="modal-icon">🎥</div>
+                        <h3>How to Create Strong Passwords</h3>
+                        <div style="background: var(--light); padding: 2rem; text-align: center; border-radius: 8px;">
+                            <p>🎬 Video would play here</p>
+                            <p style="color: var(--gray);">8-minute tutorial with step-by-step instructions</p>
+                        </div>
+                    `;
+                    break;
+                case 'quick-ref':
+                    content = `
+                        <div class="modal-icon">📘</div>
+                        <h3>CyberWise Quick Reference</h3>
+                        <p>Your 2-page quick guide to online safety:</p>
+                        <ul style="text-align: left; margin: 1rem 0; color: var(--gray);">
+                            <li>✓ Password tips</li>
+                            <li>✓ Phishing red flags</li>
+                            <li>✓ Emergency contacts</li>
+                            <li>✓ Security checklist</li>
+                        </ul>
+                        <a href="#" class="btn-primary" style="display: inline-block; text-decoration: none; margin-top: 1rem;">📥 Download PDF</a>
+                    `;
+                    break;
+                default:
+                    content = `
+                        <div class="modal-icon">ℹ️</div>
+                        <h3>Resource Coming Soon</h3>
+                        <p>This resource is being prepared. Please check back later.</p>
+                    `;
+            }
+            
+            modalContent.innerHTML = content;
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('resourceModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('resourceModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Load more resources (demo)
+        function loadMoreResources() {
+            alert('In a real website, this would load more resources. For this demo, all resources are already shown.');
+        }
+
+        // Keyboard navigation enhancement
+        document.querySelectorAll('button, a, [tabindex="0"]').forEach(element => {
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        // Save user preferences
+        function saveCategoryPreference(category) {
+            localStorage.setItem('preferred_category', category);
+        }
+
+        // Load saved preference
+        window.addEventListener('load', function() {
+            const savedCategory = localStorage.getItem('preferred_category');
+            if (savedCategory) {
+                // Could auto-select their preferred category
+                console.log('User prefers:', savedCategory);
+            }
+            
+            // Announce page load for screen readers
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.classList.add('visually-hidden');
+            announcement.textContent = 'Resources page loaded. Browse articles, videos, guides, and tools for online safety.';
+            document.body.appendChild(announcement);
+            setTimeout(() => announcement.remove(), 3000);
+        });
+    </script>
+</body>
+</html>

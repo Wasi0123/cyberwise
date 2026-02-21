@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CyberWise | Cybersecurity for Older Adults</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus states */
+        :focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* NAVIGATION - matching home page */
+        nav {
+            background: white;
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: 0.3s ease;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Accessibility controls */
+        .accessibility-bar {
+            background: var(--primary);
+            padding: 0.5rem 8%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .text-resize {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-height: 38px;
+        }
+
+        .text-resize:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 8%;
+            text-align: center;
+        }
+
+        .page-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* MAIN CONTENT */
+        .contact-section {
+            padding: 4rem 8%;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CONTACT INFORMATION CARDS */
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.1);
+        }
+
+        .method-icon {
+            font-size: 1.8rem;
+            min-width: 48px;
+            text-align: center;
+        }
+
+        .method-details h4 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .method-details p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .method-details a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.1rem;
+            word-break: break-word;
+        }
+
+        .method-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSE TIME BADGE */
+        .response-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* OFFICE HOURS */
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-list .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .hours-list .time {
+            color: var(--gray);
+        }
+
+        /* CONTACT FORM */
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .contact-form h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .form-subtitle {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .required {
+            color: var(--error);
+            margin-left: 0.2rem;
+        }
+
+        .hint-text {
+            display: block;
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            font-weight: normal;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:hover, select:hover, textarea:hover {
+            border-color: var(--accent-light);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        /* Error states */
+        input.error, select.error, textarea.error {
+            border-color: var(--error);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Radio and checkbox groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .radio-option input, .checkbox-option input {
+            width: auto;
+            min-height: 20px;
+            min-width: 20px;
+        }
+
+        .radio-option label, .checkbox-option label {
+            margin-bottom: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s ease;
+            min-height: 60px;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37,99,235,0.2);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Form success message */
+        .success-message {
+            background: var(--success);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .success-message.hidden {
+            display: none;
+        }
+
+        /* FAQ SECTION */
+        .faq-section {
+            padding: 4rem 8%;
+            background: white;
+        }
+
+        .faq-section h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            padding: 2rem 8% 4rem;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .map-placeholder {
+            background: var(--light);
+            height: 300px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            border: 2px dashed #cbd5e1;
+        }
+
+        .map-placeholder p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER - matching home page */
+        footer {
+            background: var(--primary);
+            color: #cbd5e1;
+            padding: 3rem 8%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        footer h5 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            border-top: 1px solid #334155;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 5%;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h2 {
+                font-size: 2rem;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .accessibility-bar {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-method {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .method-details {
+                text-align: center;
+            }
+
+            .hours-list li {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.3rem;
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            .accessibility-bar,
+            .submit-btn,
+            .map-section,
+            footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Accessibility Controls -->
+    <div class="accessibility-bar">
+        <button class="text-resize" onclick="resizeText('increase')" aria-label="Increase text size">A+</button>
+        <button class="text-resize" onclick="resizeText('decrease')" aria-label="Decrease text size">A-</button>
+        <button class="text-resize" onclick="resizeText('reset')" aria-label="Reset text size">Reset</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+        <h1>CyberWise</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="./module.html">Modules</a></li>
+            <li><a href="./resource.html">Resources</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h2>Get in Touch With Us</h2>
+        <p>
+            Have questions about cybersecurity? Need help with a module? 
+            Our team is here to support you on your digital safety journey.
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <section class="contact-section" aria-labelledby="contact-heading">
+            <h2 id="contact-heading" class="visually-hidden" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;">Contact Options</h2>
+            
+            <div class="contact-grid">
+                <!-- Contact Information -->
+                <div>
+                    <div class="info-card">
+                        <h3>How to Reach Us</h3>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon" aria-hidden="true">📧</div>
+                            <div class="method-details">
+                                <h4>Email</h4>
+                                <p><a href="mailto:support@cyberwise.org" aria-label="Send us an email at support@cyberwise.org">support@cyberwise.org</a></p>
+                                <span class="response-badge">Usually replies within 24 hours</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon" aria-hidden="true">📞</div>
+                            <div class="method-details">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+441234567890" aria-label="Call us on 01234 567890">01234 567890</a></p>
+                                <p class="hint-text">Monday - Friday, 9am - 5pm</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon" aria-hidden="true">📬</div>
+                            <div class="method-details">
+                                <h4>Post</h4>
+                                <p>CyberWise Project<br>
+                                Department of Computing<br>
+                                University Campus<br>
+                                City, Postcode</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Office Hours</h3>
+                        <ul class="hours-list">
+                            <li>
+                                <span class="day">Monday - Thursday</span>
+                                <span class="time">9:00am - 5:00pm</span>
+                            </li>
+                            <li>
+                                <span class="day">Friday</span>
+                                <span class="time">9:00am - 4:00pm</span>
+                            </li>
+                            <li>
+                                <span class="day">Saturday - Sunday</span>
+                                <span class="time">Closed</span>
+                            </li>
+                        </ul>
+                        <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                            * Phone support available during office hours only. 
+                            Email responses may be slower on weekends.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <p class="form-subtitle">We'll get back to you as soon as possible</p>
+
+                    <div id="successMessage" class="success-message hidden" role="alert">
+                        <span aria-hidden="true">✓</span>
+                        <span>Thank you for your message! We'll respond within 24 hours.</span>
+                    </div>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="name" name="name" required aria-required="true" placeholder="Enter your full name">
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                            <input type="email" id="email" name="email" required aria-required="true" placeholder="your.email@example.com">
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="01234 567890">
+                            <span class="hint-text">Optional - we'll only use this if we need to reach you quickly</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic">What would you like to discuss? <span class="required" aria-hidden="true">*</span></label>
+                            <select id="topic" name="topic" required aria-required="true">
+                                <option value="">Please select a topic</option>
+                                <option value="module">Module Question</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="error-message" id="topicError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message <span class="required" aria-hidden="true">*</span></label>
+                            <textarea id="message" name="message" rows="5" required aria-required="true" placeholder="Please type your message here..."></textarea>
+                            <span class="error-message" id="messageError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preferred contact method</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="contactEmail" name="contactMethod" value="email" checked>
+                                    <label for="contactEmail">Email</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="contactPhone" name="contactMethod" value="phone">
+                                    <label for="contactPhone">Phone</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="consent" name="consent" required aria-required="true">
+                                <label for="consent">I consent to CyberWise storing my data to respond to my enquiry <span class="required" aria-hidden="true">*</span></label>
+                            </div>
+                            <span class="error-message" id="consentError"></span>
+                        </div>
+
+                        <button type="submit" class="submit-btn" aria-label="Send your message">Send Message</button>
+                    </form>
+
+                    <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray); text-align: center;">
+                        Your data will be processed in accordance with our <a href="#" style="color: var(--accent);">Privacy Policy</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" aria-labelledby="faq-heading">
+            <h3 id="faq-heading">Frequently Asked Questions</h3>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">How quickly will you respond to my message?</div>
+                    <div class="faq-answer">We aim to respond to all enquiries within 24 hours during weekdays. Messages sent on weekends will be answered on the following Monday.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I get help with a specific module?</div>
+                    <div class="faq-answer">Absolutely! Please select "Module Question" from the topic dropdown and include the module name in your message. We're happy to help clarify any concepts.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is phone support available for technical issues?</div>
+                    <div class="faq-answer">Yes, phone support is available during office hours for urgent technical issues. For non-urgent matters, email is usually more efficient.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What happens to my personal information?</div>
+                    <div class="faq-answer">Your data is stored securely and only used to respond to your enquiry. We never share your information with third parties. See our Privacy Policy for details.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section" aria-labelledby="map-heading">
+            <h2 id="map-heading" class="visually-hidden" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;">Our Location</h2>
+            <div class="map-container">
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Find Us</h3>
+                <div class="map-placeholder" role="img" aria-label="Map showing university campus location">
+                    <span style="font-size: 3rem;" aria-hidden="true">📍</span>
+                    <p>University Campus<br>Department of Computing<br>Interactive map available soon</p>
+                </div>
+                <p style="margin-top: 1rem; color: var(--gray);">
+                    <strong>Getting here:</strong> The department is a 10-minute walk from the city centre. 
+                    Limited parking available for visitors with mobility needs.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h5>CyberWise</h5>
+                <p>
+                    A research-driven cybersecurity education platform focused on 
+                    inclusive design and usable security for older adults.
+                </p>
+            </div>
+
+            <div>
+                <h5>Learning Topics</h5>
+                <ul>
+                    <li><a href="#">Phishing & Social Engineering</a></li>
+                    <li><a href="#">Password Safety</a></li>
+                    <li><a href="#">Online Fraud Awareness</a></li>
+                    <li><a href="#">Privacy Protection</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Contact</h5>
+                <p>Email: <a href="mailto:info@cyberwise.org">info@cyberwise.org</a></p>
+                <p>Phone: <a href="tel:+441234567890">01234 567890</a></p>
+                <p>Designed for academic research purposes.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 CyberWise | MSc Cybersecurity Education Project | University Name</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Form Validation and Accessibility -->
+    <script>
+        // Text resize functionality
+        function resizeText(action) {
+            const html = document.querySelector('html');
+            const currentSize = parseFloat(window.getComputedStyle(html).fontSize);
+            
+            if (action === 'increase' && currentSize < 24) {
+                html.style.fontSize = (currentSize + 2) + 'px';
+            } else if (action === 'decrease' && currentSize > 12) {
+                html.style.fontSize = (currentSize - 2) + 'px';
+            } else if (action === 'reset') {
+                html.style.fontSize = '16px';
+            }
+        }
+
+        // Form validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            document.querySelectorAll('input, select, textarea').forEach(el => {
+                el.classList.remove('error');
+            });
+
+            // Validate name
+            const name = document.getElementById('name');
+            if (!name.value.trim()) {
+                document.getElementById('nameError').textContent = 'Please enter your name';
+                name.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim()) {
+                document.getElementById('emailError').textContent = 'Please enter your email address';
+                email.classList.add('error');
+                isValid = false;
+            } else if (!emailRegex.test(email.value)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                email.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate topic
+            const topic = document.getElementById('topic');
+            if (!topic.value) {
+                document.getElementById('topicError').textContent = 'Please select a topic';
+                topic.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate message
+            const message = document.getElementById('message');
+            if (!message.value.trim()) {
+                document.getElementById('messageError').textContent = 'Please enter your message';
+                message.classList.add('error');
+                isValid = false;
+            } else if (message.value.trim().length < 10) {
+                document.getElementById('messageError').textContent = 'Message must be at least 10 characters long';
+                message.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate consent
+            const consent = document.getElementById('consent');
+            if (!consent.checked) {
+                document.getElementById('consentError').textContent = 'You must consent to data storage';
+                consent.classList.add('error');
+                isValid = false;
+            }
+
+            // If valid, show success message
+            if (isValid) {
+                document.getElementById('successMessage').classList.remove('hidden');
+                this.reset();
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.add('hidden');
+                }, 5000);
+            }
+        });
+
+        // Real-time validation hints
+        document.getElementById('email').addEventListener('blur', function() {
+            if (this.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value)) {
+                document.getElementById('emailError').textContent = 'Email should include @ and a domain (e.g., name@example.com)';
+                this.classList.add('error');
+            }
+        });
+
+        // Clear error on input
+        document.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('input', function() {
+                this.classList.remove('error');
+                const errorId = this.id + 'Error';
+                const errorElement = document.getElementById(errorId);
+                if (errorElement) {
+                    errorElement.textContent = '';
+                }
+            });
+        });
+
+        // Phone number formatting hint
+        document.getElementById('phone').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9+\-\s]/g, '');
+        });
+
+        // Store form data in localStorage as draft (privacy-conscious - only temporary)
+        const formInputs = document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.type !== 'checkbox' && this.type !== 'radio') {
+                    sessionStorage.setItem(this.id, this.value);
+                }
+            });
+            
+            // Restore from sessionStorage if available
+            if (sessionStorage.getItem(input.id) && input.type !== 'checkbox' && input.type !== 'radio') {
+                input.value = sessionStorage.getItem(input.id);
+            }
+        });
+
+        // Clear sessionStorage on successful submit
+        document.getElementById('contactForm').addEventListener('submit', function() {
+            if (document.getElementById('successMessage').classList.contains('hidden') === false) {
+                sessionStorage.clear();
+            }
+        });
+    </script>
+</body>
+</html>
