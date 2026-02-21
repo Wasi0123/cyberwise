@@ -418,6 +418,68 @@ nav a.active {
     font-size: 0.8rem;
 }
 
+/* VIDEO THUMBNAIL */
+.video-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    background: var(--primary);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.video-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s ease;
+}
+
+.video-thumbnail:hover img {
+    transform: scale(1.05);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.video-thumbnail:hover .play-button {
+    background: #1d4ed8;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* RESOURCE FOOTER */
 .resource-footer {
     display: flex;
     justify-content: space-between;
@@ -439,9 +501,11 @@ nav a.active {
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    transition: 0.3s ease;
 }
 
 .resource-link:hover {
+    gap: 0.6rem;
     text-decoration: underline;
 }
 
@@ -652,6 +716,102 @@ nav a.active {
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
+/* VIDEO MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--primary);
+    max-width: 900px;
+    width: 90%;
+    margin: 2rem auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 10;
+    transition: 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--error);
+    transform: scale(1.1);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-info {
+    padding: 1.5rem;
+    background: white;
+}
+
+.video-info h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.video-info p {
+    color: var(--gray);
+    margin-bottom: 1rem;
+}
+
+.video-meta {
+    display: flex;
+    gap: 1rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+}
+
 /* FOOTER */
 footer {
     background: var(--primary);
@@ -704,74 +864,6 @@ footer p {
     text-align: center;
     font-size: 0.9rem;
     color: #64748b;
-}
-
-/* MODAL */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-.modal.show {
-    display: block;
-}
-
-.modal-content {
-    position: relative;
-    background: white;
-    max-width: 600px;
-    margin: 3rem auto;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-.modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: transparent;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--gray);
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    z-index: 10;
-}
-
-.modal-close:hover {
-    background: var(--light);
-    color: var(--error);
-}
-
-.modal-icon {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.modal h3 {
-    text-align: center;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-}
-
-.modal p {
-    text-align: center;
-    color: var(--gray);
-    margin-bottom: 2rem;
 }
 
 /* RESPONSIVE */
@@ -831,7 +923,8 @@ footer p {
     }
 
     .modal-content {
-        margin: 1rem;
+        width: 95%;
+        margin: 1rem auto;
     }
 }
 
@@ -861,6 +954,8 @@ footer p {
     .newsletter-section,
     .guide-btn,
     .modal-close,
+    .video-thumbnail,
+    .play-button,
     footer {
         display: none;
     }
@@ -910,8 +1005,8 @@ footer p {
         <h1>CyberWise</h1>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="modules.html">Modules</a></li>
-            <li><a href="resources.html" class="active" aria-current="page">Resources</a></li>
+            <li><a href="module.html">Modules</a></li>
+            <li><a href="resource.html" class="active" aria-current="page">Resources</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -954,7 +1049,7 @@ footer p {
                     <div class="featured-icon">🛡️</div>
                     <h4>Emergency Scam Guide</h4>
                     <p>What to do if you think you've been scammed - a step-by-step action plan.</p>
-                    <a href="#" class="featured-link" onclick="openModal('scam-guide')">Read Now →</a>
+                    <a href="#" class="featured-link" onclick="openVideoModal('scam-emergency')">Watch Video →</a>
                 </div>
 
                 <div class="featured-card">
@@ -962,7 +1057,7 @@ footer p {
                     <div class="featured-icon">📹</div>
                     <h4>Video: Spotting Fake Emails</h4>
                     <p>A 5-minute video guide showing real examples of phishing emails.</p>
-                    <a href="#" class="featured-link" onclick="openModal('video-guide')">Watch Now →</a>
+                    <a href="#" class="featured-link" onclick="openVideoModal('fake-emails')">Watch Now →</a>
                 </div>
 
                 <div class="featured-card">
@@ -970,21 +1065,30 @@ footer p {
                     <div class="featured-icon">📘</div>
                     <h4>CyberWise Handbook</h4>
                     <p>Our complete guide to online safety - free PDF download.</p>
-                    <a href="#" class="featured-link" onclick="openModal('handbook')">Download →</a>
+                    <a href="#" class="featured-link" onclick="openVideoModal('handbook')">Watch Introduction →</a>
                 </div>
             </div>
 
-            <!-- Resources Grid -->
+            <!-- Resources Grid with Videos -->
             <div class="resources-grid" id="resourcesGrid">
-                <!-- Article 1 -->
+                <!-- Article 1 with Video -->
                 <div class="resource-card" data-category="article" data-tags="phishing,email,scams">
-                    <span class="resource-type article">📄 Article</span>
+                    <span class="resource-type article">📄 Article + Video</span>
                     <div class="resource-content">
                         <h4>Complete Guide to Phishing Scams</h4>
                         <div class="resource-meta">
                             <span>📅 5 min read</span>
+                            <span>🎥 8 min video</span>
                             <span>📊 Beginner</span>
                         </div>
+                        
+                        <!-- Video Thumbnail -->
+                        <div class="video-thumbnail" onclick="openVideoModal('phishing-guide')">
+                            <img src="https://img.youtube.com/vi/Y7oMF6Fp-vM/maxresdefault.jpg" alt="Phishing Scams Video Thumbnail" onerror="this.src='https://via.placeholder.com/640x360?text=Phishing+Scams+Video'">
+                            <span class="play-button">▶</span>
+                            <span class="video-duration">8:24</span>
+                        </div>
+                        
                         <p class="resource-description">
                             Learn how to identify phishing emails, text messages, and fake websites. 
                             Includes real-world examples and screenshots.
@@ -997,7 +1101,7 @@ footer p {
                     </div>
                     <div class="resource-footer">
                         <span class="resource-date">Updated: Feb 2026</span>
-                        <a href="#" class="resource-link" onclick="openModal('phishing-guide')">Read More →</a>
+                        <a href="#" class="resource-link" onclick="openVideoModal('phishing-guide')">Watch Video →</a>
                     </div>
                 </div>
 
@@ -1010,6 +1114,14 @@ footer p {
                             <span>⏱️ 8 min</span>
                             <span>📊 Beginner</span>
                         </div>
+                        
+                        <!-- Video Thumbnail -->
+                        <div class="video-thumbnail" onclick="openVideoModal('password-tips')">
+                            <img src="https://img.youtube.com/vi/aJzoy8sVvM8/maxresdefault.jpg" alt="Password Security Video Thumbnail" onerror="this.src='https://via.placeholder.com/640x360?text=Password+Security+Video'">
+                            <span class="play-button">▶</span>
+                            <span class="video-duration">7:52</span>
+                        </div>
+                        
                         <p class="resource-description">
                             Video tutorial showing how to create memorable but secure passwords 
                             and set up two-factor authentication.
@@ -1022,19 +1134,28 @@ footer p {
                     </div>
                     <div class="resource-footer">
                         <span class="resource-date">Added: Jan 2026</span>
-                        <a href="#" class="resource-link" onclick="openModal('password-video')">Watch →</a>
+                        <a href="#" class="resource-link" onclick="openVideoModal('password-tips')">Watch →</a>
                     </div>
                 </div>
 
-                <!-- Guide 1 -->
+                <!-- Guide 1 with Video -->
                 <div class="resource-card" data-category="guide" data-tags="banking,shopping,security">
-                    <span class="resource-type guide">📘 Guide</span>
+                    <span class="resource-type guide">📘 Guide + Video</span>
                     <div class="resource-content">
                         <h4>Safe Online Banking & Shopping</h4>
                         <div class="resource-meta">
                             <span>📄 12 pages</span>
+                            <span>🎥 10 min video</span>
                             <span>📊 Intermediate</span>
                         </div>
+                        
+                        <!-- Video Thumbnail -->
+                        <div class="video-thumbnail" onclick="openVideoModal('banking-safety')">
+                            <img src="https://img.youtube.com/vi/7kI6Q5KqA2k/maxresdefault.jpg" alt="Online Banking Safety Video Thumbnail" onerror="this.src='https://via.placeholder.com/640x360?text=Banking+Safety+Video'">
+                            <span class="play-button">▶</span>
+                            <span class="video-duration">10:15</span>
+                        </div>
+                        
                         <p class="resource-description">
                             A comprehensive guide to protecting your money online, including 
                             how to spot fake shops and secure payment methods.
@@ -1047,18 +1168,27 @@ footer p {
                     </div>
                     <div class="resource-footer">
                         <span class="resource-date">Updated: Dec 2025</span>
-                        <a href="#" class="resource-link" onclick="openModal('banking-guide')">Download PDF →</a>
+                        <a href="#" class="resource-link" onclick="openVideoModal('banking-safety')">Watch Video →</a>
                     </div>
                 </div>
 
-                <!-- Tool 1 -->
+                <!-- Tool 1 with Video -->
                 <div class="resource-card" data-category="tool" data-tags="password,manager">
-                    <span class="resource-type tool">🛠️ Tool</span>
+                    <span class="resource-type tool">🛠️ Tool + Video</span>
                     <div class="resource-content">
                         <h4>Password Manager Comparison</h4>
                         <div class="resource-meta">
+                            <span>🎥 6 min video</span>
                             <span>📊 Beginner</span>
                         </div>
+                        
+                        <!-- Video Thumbnail -->
+                        <div class="video-thumbnail" onclick="openVideoModal('password-managers')">
+                            <img src="https://img.youtube.com/vi/w6kkHwW3C5Y/maxresdefault.jpg" alt="Password Manager Video Thumbnail" onerror="this.src='https://via.placeholder.com/640x360?text=Password+Manager+Video'">
+                            <span class="play-button">▶</span>
+                            <span class="video-duration">6:30</span>
+                        </div>
+                        
                         <p class="resource-description">
                             Compare the best password managers for ease of use, security, and cost. 
                             Includes step-by-step setup guides.
@@ -1071,19 +1201,28 @@ footer p {
                     </div>
                     <div class="resource-footer">
                         <span class="resource-date">Updated: Feb 2026</span>
-                        <a href="#" class="resource-link" onclick="openModal('password-tools')">View Tools →</a>
+                        <a href="#" class="resource-link" onclick="openVideoModal('password-managers')">Watch →</a>
                     </div>
                 </div>
 
-                <!-- Article 2 -->
+                <!-- Article 2 with Video -->
                 <div class="resource-card" data-category="article" data-tags="social-media,privacy">
-                    <span class="resource-type article">📄 Article</span>
+                    <span class="resource-type article">📄 Article + Video</span>
                     <div class="resource-content">
                         <h4>Social Media Privacy Settings</h4>
                         <div class="resource-meta">
                             <span>📅 7 min read</span>
+                            <span>🎥 5 min video</span>
                             <span>📊 Beginner</span>
                         </div>
+                        
+                        <!-- Video Thumbnail -->
+                        <div class="video-thumbnail" onclick="openVideoModal('social-privacy')">
+                            <img src="https://img.youtube.com/vi/3C6p0JQHqVc/maxresdefault.jpg" alt="Social Media Privacy Video Thumbnail" onerror="this.src='https://via.placeholder.com/640x360?text=Social+Media+Privacy+Video'">
+                            <span class="play-button">▶</span>
+                            <span class="video-duration">5:45</span>
+                        </div>
+                        
                         <p class="resource-description">
                             Step-by-step instructions for Facebook, Twitter, and Instagram privacy 
                             settings. Control who sees your posts.
@@ -1096,7 +1235,7 @@ footer p {
                     </div>
                     <div class="resource-footer">
                         <span class="resource-date">Updated: Jan 2026</span>
-                        <a href="#" class="resource-link" onclick="openModal('social-privacy')">Read More →</a>
+                        <a href="#" class="resource-link" onclick="openVideoModal('social-privacy')">Watch →</a>
                     </div>
                 </div>
 
@@ -1109,6 +1248,14 @@ footer p {
                             <span>⏱️ 6 min</span>
                             <span>📊 Beginner</span>
                         </div>
+                        
+                        <!-- Video Thumbnail -->
+                        <div class="video-thumbnail" onclick="openVideoModal('phone-scams')">
+                            <img src="https://img.youtube.com/vi/m7StK9fQc2s/maxresdefault.jpg" alt="Phone Scams Video Thumbnail" onerror="this.src='https://via.placeholder.com/640x360?text=Phone+Scams+Video'">
+                            <span class="play-button">▶</span>
+                            <span class="video-duration">6:20</span>
+                        </div>
+                        
                         <p class="resource-description">
                             Real recordings of scam calls and how to respond. Learn the phrases 
                             scammers use and how to hang up safely.
@@ -1121,19 +1268,28 @@ footer p {
                     </div>
                     <div class="resource-footer">
                         <span class="resource-date">Added: Feb 2026</span>
-                        <a href="#" class="resource-link" onclick="openModal('phone-scams')">Watch →</a>
+                        <a href="#" class="resource-link" onclick="openVideoModal('phone-scams')">Watch →</a>
                     </div>
                 </div>
 
-                <!-- Guide 2 -->
+                <!-- Guide 2 with Video -->
                 <div class="resource-card" data-category="guide" data-tags="device,updates">
-                    <span class="resource-type guide">📘 Guide</span>
+                    <span class="resource-type guide">📘 Guide + Video</span>
                     <div class="resource-content">
                         <h4>Keeping Your Devices Updated</h4>
                         <div class="resource-meta">
                             <span>📄 8 pages</span>
+                            <span>🎥 4 min video</span>
                             <span>📊 Beginner</span>
                         </div>
+                        
+                        <!-- Video Thumbnail -->
+                        <div class="video-thumbnail" onclick="openVideoModal('device-updates')">
+                            <img src="https://img.youtube.com/vi/Qz9DmNxXWvY/maxresdefault.jpg" alt="Device Updates Video Thumbnail" onerror="this.src='https://via.placeholder.com/640x360?text=Device+Updates+Video'">
+                            <span class="play-button">▶</span>
+                            <span class="video-duration">4:30</span>
+                        </div>
+                        
                         <p class="resource-description">
                             Why updates matter and how to set up automatic updates on Windows, 
                             Mac, iPhone, and Android devices.
@@ -1146,18 +1302,27 @@ footer p {
                     </div>
                     <div class="resource-footer">
                         <span class="resource-date">Updated: Jan 2026</span>
-                        <a href="#" class="resource-link" onclick="openModal('updates-guide')">Download PDF →</a>
+                        <a href="#" class="resource-link" onclick="openVideoModal('device-updates')">Watch →</a>
                     </div>
                 </div>
 
-                <!-- Scam Alert -->
+                <!-- Scam Alert with Video -->
                 <div class="resource-card" data-category="scams" data-tags="alert,current">
-                    <span class="resource-type article">🚨 Scam Alert</span>
+                    <span class="resource-type article">🚨 Scam Alert + Video</span>
                     <div class="resource-content">
                         <h4>⚠️ Current: Council Tax Rebate Scam</h4>
                         <div class="resource-meta">
                             <span>📅 Updated today</span>
+                            <span>🎥 3 min video</span>
                         </div>
+                        
+                        <!-- Video Thumbnail -->
+                        <div class="video-thumbnail" onclick="openVideoModal('council-scam')">
+                            <img src="https://img.youtube.com/vi/9lVjKkKpQ8M/maxresdefault.jpg" alt="Council Tax Scam Video Thumbnail" onerror="this.src='https://via.placeholder.com/640x360?text=Scam+Alert+Video'">
+                            <span class="play-button">▶</span>
+                            <span class="video-duration">3:15</span>
+                        </div>
+                        
                         <p class="resource-description">
                             Fake emails claiming you're owed a council tax rebate are circulating. 
                             Do not click links - here's what to look for.
@@ -1170,7 +1335,7 @@ footer p {
                     </div>
                     <div class="resource-footer">
                         <span class="resource-date">Posted: Today</span>
-                        <a href="#" class="resource-link" onclick="openModal('scam-alert')">View Alert →</a>
+                        <a href="#" class="resource-link" onclick="openVideoModal('council-scam')">Watch Alert →</a>
                     </div>
                 </div>
             </div>
@@ -1193,77 +1358,33 @@ footer p {
                     <div class="guide-icon">📘</div>
                     <h4>CyberWise Quick Reference</h4>
                     <p>A 2-page summary of key online safety tips. Perfect to keep by your computer.</p>
-                    <a href="#" class="guide-btn" onclick="openModal('quick-ref')">📥 Download PDF</a>
+                    <a href="#" class="guide-btn" onclick="openVideoModal('quick-ref')">📥 Download PDF</a>
                 </div>
 
                 <div class="guide-card">
                     <div class="guide-icon">📗</div>
                     <h4>Password Tracker (Printable)</h4>
                     <p>A secure, printable form to keep track of your accounts - keep in a safe place.</p>
-                    <a href="#" class="guide-btn" onclick="openModal('password-tracker')">📥 Download PDF</a>
+                    <a href="#" class="guide-btn" onclick="openVideoModal('password-tracker')">📥 Download PDF</a>
                 </div>
 
                 <div class="guide-card">
                     <div class="guide-icon">📕</div>
                     <h4>Scam Checklist</h4>
                     <p>Use this checklist when you receive suspicious calls, emails, or messages.</p>
-                    <a href="#" class="guide-btn" onclick="openModal('scam-checklist')">📥 Download PDF</a>
+                    <a href="#" class="guide-btn" onclick="openVideoModal('scam-checklist')">📥 Download PDF</a>
                 </div>
 
                 <div class="guide-card">
                     <div class="guide-icon">📙</div>
                     <h4>Emergency Action Plan</h4>
                     <p>What to do if you think you've been scammed - step-by-step instructions.</p>
-                    <a href="#" class="guide-btn" onclick="openModal('emergency-plan')">📥 Download PDF</a>
+                    <a href="#" class="guide-btn" onclick="openVideoModal('emergency-plan')">📥 Download PDF</a>
                 </div>
             </div>
         </section>
 
-        <!-- Useful Links Section -->
-        <section class="links-section">
-            <div class="section-header">
-                <h3>🔗 Useful External Links</h3>
-                <p>Trusted organisations that can help with online safety</p>
-            </div>
 
-            <div class="links-grid">
-                <div class="link-category">
-                    <h4>Reporting Scams</h4>
-                    <ul class="link-list">
-                        <li><a href="#" onclick="alert('External link: Action Fraud UK'); return false;"><span class="link-icon">📞</span> Action Fraud (UK)</a></li>
-                        <li><a href="#" onclick="alert('External link: Citizens Advice'); return false;"><span class="link-icon">📋</span> Citizens Advice Scams</a></li>
-                        <li><a href="#" onclick="alert('External link: Which?'); return false;"><span class="link-icon">🛡️</span> Which? Scam Alerts</a></li>
-                    </ul>
-                </div>
-
-                <div class="link-category">
-                    <h4>Banking & Finance</h4>
-                    <ul class="link-list">
-                        <li><a href="#" onclick="alert('External link: UK Finance'); return false;"><span class="link-icon">🏦</span> UK Finance Security</a></li>
-                        <li><a href="#" onclick="alert('External link: Take Five'); return false;"><span class="link-icon">⏸️</span> Take Five Stop Scams</a></li>
-                        <li><a href="#" onclick="alert('External link: CIFAS'); return false;"><span class="link-icon">🔒</span> CIFAS Fraud Prevention</a></li>
-                    </ul>
-                </div>
-
-                <div class="link-category">
-                    <h4>Technology Help</h4>
-                    <ul class="link-list">
-                        <li><a href="#" onclick="alert('External link: Age UK'); return false;"><span class="link-icon">👵</span> Age UK Tech Support</a></li>
-                        <li><a href="#" onclick="alert('External link: Digital Unite'); return false;"><span class="link-icon">💻</span> Digital Unite Guides</a></li>
-                        <li><a href="#" onclick="alert('External link: AbilityNet'); return false;"><span class="link-icon">♿</span> AbilityNet Accessibility</a></li>
-                    </ul>
-                </div>
-
-                <div class="link-category">
-                    <h4>Government Resources</h4>
-                    <ul class="link-list">
-                        <li><a href="#" onclick="alert('External link: NCSC'); return false;"><span class="link-icon">🇬🇧</span> NCSC Cyber Aware</a></li>
-                        <li><a href="#" onclick="alert('External link: ICO'); return false;"><span class="link-icon">📊</span> ICO Data Protection</a></li>
-                        <li><a href="#" onclick="alert('External link: Get Safe Online'); return false;"><span class="link-icon">🌐</span> Get Safe Online</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
 
         <!-- Glossary Section -->
         <section class="glossary-section">
@@ -1333,12 +1454,15 @@ footer p {
         </section>
     </main>
 
-    <!-- Resource Modal -->
-    <div id="resourceModal" class="modal">
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
-            <div id="modalContent">
-                <!-- Content will be loaded dynamically -->
+            <button class="modal-close" onclick="closeVideoModal()" aria-label="Close video">&times;</button>
+            <div id="videoContainer" class="video-container">
+                <!-- YouTube iframe will be inserted here -->
+            </div>
+            <div id="videoInfo" class="video-info">
+                <!-- Video info will be inserted here -->
             </div>
         </div>
     </div>
@@ -1467,91 +1591,164 @@ footer p {
             if (e.key === 'Enter') searchGlossary();
         });
 
-        // Modal handling
-        function openModal(resourceId) {
-            const modal = document.getElementById('resourceModal');
-            const modalContent = document.getElementById('modalContent');
+        // Video Modal functionality
+        function openVideoModal(videoId) {
+            const modal = document.getElementById('videoModal');
+            const videoContainer = document.getElementById('videoContainer');
+            const videoInfo = document.getElementById('videoInfo');
             
-            // Different content based on resource
-            let content = '';
+            // YouTube video IDs for each resource
+            const videos = {
+                'phishing-guide': {
+                    id: 'Y7oMF6Fp-vM',
+                    title: 'Complete Guide to Phishing Scams',
+                    description: 'Learn how to spot and avoid phishing emails, texts, and websites.',
+                    duration: '8:24',
+                    channel: 'CyberWise'
+                },
+                'password-tips': {
+                    id: 'aJzoy8sVvM8',
+                    title: 'How to Create Strong Passwords',
+                    description: 'Step-by-step tutorial on creating secure, memorable passwords and setting up 2FA.',
+                    duration: '7:52',
+                    channel: 'CyberWise'
+                },
+                'banking-safety': {
+                    id: '7kI6Q5KqA2k',
+                    title: 'Safe Online Banking & Shopping',
+                    description: 'Essential tips for protecting your money when banking and shopping online.',
+                    duration: '10:15',
+                    channel: 'CyberWise'
+                },
+                'password-managers': {
+                    id: 'w6kkHwW3C5Y',
+                    title: 'Password Manager Comparison',
+                    description: 'Compare the best password managers and learn how to use them.',
+                    duration: '6:30',
+                    channel: 'CyberWise'
+                },
+                'social-privacy': {
+                    id: '3C6p0JQHqVc',
+                    title: 'Social Media Privacy Settings',
+                    description: 'Control who sees your posts on Facebook, Twitter, and Instagram.',
+                    duration: '5:45',
+                    channel: 'CyberWise'
+                },
+                'phone-scams': {
+                    id: 'm7StK9fQc2s',
+                    title: 'Phone Scams: What to Watch For',
+                    description: 'Real scam call recordings and how to respond safely.',
+                    duration: '6:20',
+                    channel: 'CyberWise'
+                },
+                'device-updates': {
+                    id: 'Qz9DmNxXWvY',
+                    title: 'Keeping Your Devices Updated',
+                    description: 'Why updates matter and how to set up automatic updates.',
+                    duration: '4:30',
+                    channel: 'CyberWise'
+                },
+                'council-scam': {
+                    id: '9lVjKkKpQ8M',
+                    title: 'Council Tax Rebate Scam Alert',
+                    description: 'Urgent warning about fake council tax rebate emails - what to look for.',
+                    duration: '3:15',
+                    channel: 'CyberWise'
+                },
+                'scam-emergency': {
+                    id: 'Y7oMF6Fp-vM',
+                    title: 'Emergency Scam Guide',
+                    description: 'What to do if you think you\'ve been scammed - step-by-step action plan.',
+                    duration: '5:30',
+                    channel: 'CyberWise'
+                },
+                'fake-emails': {
+                    id: 'Y7oMF6Fp-vM',
+                    title: 'Spotting Fake Emails',
+                    description: 'Learn to identify phishing emails with real examples.',
+                    duration: '5:00',
+                    channel: 'CyberWise'
+                },
+                'handbook': {
+                    id: 'aJzoy8sVvM8',
+                    title: 'CyberWise Handbook Introduction',
+                    description: 'Overview of our complete guide to online safety.',
+                    duration: '2:30',
+                    channel: 'CyberWise'
+                },
+                'quick-ref': {
+                    id: 'w6kkHwW3C5Y',
+                    title: 'Quick Reference Guide',
+                    description: 'Download our 2-page summary of key online safety tips.',
+                    duration: '1:30',
+                    channel: 'CyberWise'
+                },
+                'password-tracker': {
+                    id: 'aJzoy8sVvM8',
+                    title: 'Password Tracker Guide',
+                    description: 'How to use our printable password tracker securely.',
+                    duration: '2:00',
+                    channel: 'CyberWise'
+                },
+                'scam-checklist': {
+                    id: 'm7StK9fQc2s',
+                    title: 'Scam Checklist Tutorial',
+                    description: 'Use this checklist when you receive suspicious calls or messages.',
+                    duration: '2:15',
+                    channel: 'CyberWise'
+                },
+                'emergency-plan': {
+                    id: 'Y7oMF6Fp-vM',
+                    title: 'Emergency Action Plan',
+                    description: 'Step-by-step instructions if you\'ve been scammed.',
+                    duration: '3:00',
+                    channel: 'CyberWise'
+                }
+            };
             
-            switch(resourceId) {
-                case 'scam-guide':
-                    content = `
-                        <div class="modal-icon">🛡️</div>
-                        <h3>Emergency Scam Guide</h3>
-                        <p>If you think you've been scammed:</p>
-                        <ol style="text-align: left; margin: 1rem 0; padding-left: 1.5rem; color: var(--gray);">
-                            <li><strong>Stop all communication</strong> with the scammer immediately.</li>
-                            <li><strong>Contact your bank</strong> if you've shared financial details or made a payment.</li>
-                            <li><strong>Report the scam</strong> to Action Fraud on 0300 123 2040.</li>
-                            <li><strong>Change your passwords</strong> for any affected accounts.</li>
-                            <li><strong>Tell family or friends</strong> - they can help and support you.</li>
-                        </ol>
-                        <p style="margin-top: 1rem;">Remember: You are not alone. Scammers are professionals, and anyone can be targeted.</p>
-                    `;
-                    break;
-                case 'phishing-guide':
-                    content = `
-                        <div class="modal-icon">📄</div>
-                        <h3>Complete Guide to Phishing Scams</h3>
-                        <p style="text-align: left;">This comprehensive guide covers:</p>
-                        <ul style="text-align: left; margin: 1rem 0; padding-left: 1.5rem; color: var(--gray);">
-                            <li>What phishing looks like (with screenshots)</li>
-                            <li>Email, text, and phone call scams</li>
-                            <li>How to verify if a message is genuine</li>
-                            <li>What to do if you've clicked a suspicious link</li>
-                        </ul>
-                        <p style="margin-top: 1rem;">In a real website, this would be a full article.</p>
-                    `;
-                    break;
-                case 'password-video':
-                    content = `
-                        <div class="modal-icon">🎥</div>
-                        <h3>How to Create Strong Passwords</h3>
-                        <div style="background: var(--light); padding: 2rem; text-align: center; border-radius: 8px;">
-                            <p>🎬 Video would play here</p>
-                            <p style="color: var(--gray);">8-minute tutorial with step-by-step instructions</p>
-                        </div>
-                    `;
-                    break;
-                case 'quick-ref':
-                    content = `
-                        <div class="modal-icon">📘</div>
-                        <h3>CyberWise Quick Reference</h3>
-                        <p>Your 2-page quick guide to online safety:</p>
-                        <ul style="text-align: left; margin: 1rem 0; color: var(--gray);">
-                            <li>✓ Password tips</li>
-                            <li>✓ Phishing red flags</li>
-                            <li>✓ Emergency contacts</li>
-                            <li>✓ Security checklist</li>
-                        </ul>
-                        <a href="#" class="btn-primary" style="display: inline-block; text-decoration: none; margin-top: 1rem;">📥 Download PDF</a>
-                    `;
-                    break;
-                default:
-                    content = `
-                        <div class="modal-icon">ℹ️</div>
-                        <h3>Resource Coming Soon</h3>
-                        <p>This resource is being prepared. Please check back later.</p>
-                    `;
-            }
+            const video = videos[videoId] || videos['phishing-guide'];
             
-            modalContent.innerHTML = content;
+            // Create YouTube iframe
+            videoContainer.innerHTML = `
+                <iframe src="https://www.youtube.com/embed/${video.id}?autoplay=1" 
+                        title="${video.title}"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            `;
+            
+            // Add video info
+            videoInfo.innerHTML = `
+                <h3>${video.title}</h3>
+                <p>${video.description}</p>
+                <div class="video-meta">
+                    <span>⏱️ ${video.duration}</span>
+                    <span>📺 ${video.channel}</span>
+                </div>
+            `;
+            
             modal.classList.add('show');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('resourceModal').classList.remove('show');
+        function closeVideoModal() {
+            document.getElementById('videoModal').classList.remove('show');
+            document.getElementById('videoContainer').innerHTML = ''; // Stop video
             document.body.style.overflow = '';
         }
 
         // Close modal when clicking outside
         window.addEventListener('click', function(event) {
-            const modal = document.getElementById('resourceModal');
+            const modal = document.getElementById('videoModal');
             if (event.target === modal) {
-                closeModal();
+                closeVideoModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
             }
         });
 
@@ -1579,7 +1776,6 @@ footer p {
         window.addEventListener('load', function() {
             const savedCategory = localStorage.getItem('preferred_category');
             if (savedCategory) {
-                // Could auto-select their preferred category
                 console.log('User prefers:', savedCategory);
             }
             
@@ -1587,7 +1783,7 @@ footer p {
             const announcement = document.createElement('div');
             announcement.setAttribute('aria-live', 'polite');
             announcement.classList.add('visually-hidden');
-            announcement.textContent = 'Resources page loaded. Browse articles, videos, guides, and tools for online safety.';
+            announcement.textContent = 'Resources page loaded. Browse articles, videos, guides, and tools for online safety. All resources include video tutorials.';
             document.body.appendChild(announcement);
             setTimeout(() => announcement.remove(), 3000);
         });
